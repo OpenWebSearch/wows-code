@@ -2,6 +2,19 @@
 
 This repository contains all code, tutorials, and baselines for the [1st International Workshop on Open Web Search](https://opensearchfoundation.org/en/events-osf/wows2024) hosted at the [46th European Conference on Information Retrieval](https://www.ecir2024.org/) in Glasgow (24th-28th March, 2024).
 
+
+## Tutorials
+
+We included all components into a [dashboard of resources](https://tira-io.github.io/teaching-ir-with-shared-tasks/) that can be easily re-used within teaching.
+
+- [Re-using pre-built indices](https://github.com/tira-io/teaching-ir-with-shared-tasks/blob/main/tutorials/tutorial-reuse-pyterrier-indices.ipynb)
+
+## Resources
+
+- [PyTerrier indices of public datasets](https://zenodo.org/records/10743990)
+
+## Links
+
 Important links/resources:
 - [The workshop page](https://opensearchfoundation.org/en/events-osf/wows2024)
 - [Software submissions](https://www.tira.io/task-overview/workshop-on-open-web-search/)
