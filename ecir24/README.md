@@ -13,7 +13,22 @@ We included all components into a [dashboard of resources](https://tira-io.githu
 
 - [PyTerrier indices of public datasets](https://zenodo.org/records/10743990)
 
+|Team              | Component | Link to Tutorial Notebok|
+|------------------|-----------|-------------------------|
+|sean              |           |                         |
+|naverlabseurope   |           |                         |
+|fschlatt          |           |                         |
+|tu-dresden-01     |           |                         |
+|tu-dresden-02     |           |                         |
+|tu-dresden-03     |           | https://github.com/tira-io/teaching-ir-with-shared-tasks/blob/main/tutorials/tutorial-query-expansion-with-llms.ipynb                        |
+|tu-dresden-04     |           |                         |
+|qspell            |           |                         |
+|marcelgohsen      |           |                         |
+
 ## Links
+
+
+## Resources
 
 Important links/resources:
 - [The workshop page](https://opensearchfoundation.org/en/events-osf/wows2024)
