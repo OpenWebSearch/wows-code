@@ -10,8 +10,7 @@ __version__ = "0.0.1"
 def __sorted(ret):
     ret = pd.DataFrame(ret)
     ret = ret.sort_values(["score","doc_id"], ascending=[False,True])
-
-    return ret['doc_id']
+    return [(i['score'], i['doc_id']) for _, i in ret.iterrows()]
 
 
 def evaluate(predictions, truths):
@@ -20,7 +19,7 @@ def evaluate(predictions, truths):
     predictions_rankings = {}
 
     for i in truths:
-        id_to_query_doc[i['id']] = {'query_id': i['query_id'], 'doc_id': i['unknown_doc_id'], 'qrel': i['qrel_unknown_doc']}
+        id_to_query_doc[i['id']] = {'query_id': i['query_id'], 'doc_id': i['unknown_doc_id'], 'qrel': int(i['qrel_unknown_doc'])}
 
     predictions = {i['id']: i for i in predictions}
 
@@ -33,7 +32,7 @@ def evaluate(predictions, truths):
             predictions_rankings[v['query_id']] = []
 
         truths_rankings[v['query_id']].append({'doc_id': v['doc_id'], 'score': v['qrel']})
-        predictions_rankings[v['query_id']].append({'doc_id': v['doc_id'], 'score': predictions[k]['probability_relevant']})
+        predictions_rankings[v['query_id']].append({'doc_id': v['doc_id'], 'score': float(predictions[k]['probability_relevant'])})
 
     tau_ap = []
     kendall = []
@@ -43,6 +42,7 @@ def evaluate(predictions, truths):
     for query_id in truths_rankings.keys():
         truth_ranking = __sorted(truths_rankings[query_id])
         predicted_ranking = __sorted(predictions_rankings[query_id])
+
         tau_ap.append(misc.get_correlation(truth_ranking, predicted_ranking, correlation = "tauap")[0])
         kendall.append(misc.get_correlation(truth_ranking, predicted_ranking, correlation = "kendall")[0])
         spearman.append(misc.get_correlation(truth_ranking, predicted_ranking, correlation = "spearman")[0])
