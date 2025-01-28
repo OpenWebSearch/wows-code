@@ -7,24 +7,16 @@ from statistics import mean
 
 __version__ = "0.0.1"
 
+
 def __sorted(ret):
     ret = pd.DataFrame(ret)
     ret = ret.sort_values(["score","doc_id"], ascending=[False,True])
     return [(i['score'], i['doc_id']) for _, i in ret.iterrows()]
 
 
-def evaluate(predictions, truths):
-    id_to_query_doc = {}
+def __pointwise_rankings(id_to_query_doc, predictions):
     truths_rankings = {}
     predictions_rankings = {}
-
-    for i in truths:
-        id_to_query_doc[i['id']] = {'query_id': i['query_id'], 'doc_id': i['unknown_doc_id'], 'qrel': int(i['qrel_unknown_doc'])}
-
-    predictions = {i['id']: i for i in predictions}
-
-    if predictions.keys() != id_to_query_doc.keys():
-        raise ValueError('fooo')
 
     for k, v in id_to_query_doc.items():
         if v['query_id'] not in truths_rankings:
@@ -33,6 +25,35 @@ def evaluate(predictions, truths):
 
         truths_rankings[v['query_id']].append({'doc_id': v['doc_id'], 'score': v['qrel']})
         predictions_rankings[v['query_id']].append({'doc_id': v['doc_id'], 'score': float(predictions[k]['probability_relevant'])})
+
+    return truths_rankings, predictions_rankings
+
+
+def __pairwise_rankings(id_to_query_doc, predictions):
+    truths_rankings = {}
+    predictions_rankings = {}
+    raise ValueError('Not yet implemented')
+
+
+def evaluate(predictions, truths):
+    id_to_query_doc = {}
+    pairwise = False
+
+    for i in truths:
+        id_to_query_doc[i['id']] = {'query_id': i['query_id'], 'doc_id': i['unknown_doc_id'], 'qrel': int(i['qrel_unknown_doc'])}
+        if 'relevant_doc_id' in i:
+            pairwise = True
+            id_to_query_doc[i['id']]['relevant_doc_id'] = i['relevant_doc_id']
+
+    predictions = {i['id']: i for i in predictions}
+
+    if predictions.keys() != id_to_query_doc.keys():
+        raise ValueError('fooo')
+
+    if pairwise:
+        truths_rankings, predictions_rankings = __pairwise_rankings(id_to_query_doc, predictions)
+    else:
+        truths_rankings, predictions_rankings = __pointwise_rankings(id_to_query_doc, predictions)
 
     tau_ap = []
     kendall = []
@@ -49,6 +70,7 @@ def evaluate(predictions, truths):
         pearson.append(misc.get_correlation(truth_ranking, predicted_ranking, correlation = "pearson")[0])
 
     return {'tau_ap': mean(tau_ap), 'kendall': mean(kendall), 'spearman': mean(spearman), 'pearson': mean(pearson)}
+
 
 @click.command()
 @click.argument('predictions', type=str)

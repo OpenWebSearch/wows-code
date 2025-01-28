@@ -68,7 +68,6 @@ def calculate_pairwise_data(qid_to_split, dataset):
 def persist_data_pairwise(qid_to_split, dataset):
     qid_to_inference_pairs = calculate_pairwise_data(qid_to_split, dataset)
 
-    
     for training_doc, test_doc in qid_to_inference_pairs.keys():
         with open('smoke-test-dataset/pairwise/inputs/inputs.jsonl', 'w') as input_file, open('smoke-test-dataset/pairwise/labels/labels.jsonl', 'w') as labels_file:
             i = qid_to_inference_pairs[(training_doc, test_doc)].copy()
@@ -79,16 +78,14 @@ def persist_data_pairwise(qid_to_split, dataset):
             del i['unknown_doc_id']
             del i['qrel_unknown_doc']
 
-
             input_file.write(json.dumps(i) + '\n')
             labels_file.write(json.dumps(t) + '\n')
 
 def persist_data_pointwise(qid_to_split, dataset):
     qid_to_inference_pairs = calculate_pairwise_data(qid_to_split, dataset)
     covered_ids = set()
-    
-    for training_doc, test_doc in qid_to_inference_pairs.keys():
-        with open('smoke-test-dataset/pointwise/inputs/inputs.jsonl', 'w') as input_file, open('smoke-test-dataset/pointwise/labels/labels.jsonl', 'w') as labels_file:
+    with open('smoke-test-dataset/pointwise/inputs/inputs.jsonl', 'w') as input_file, open('smoke-test-dataset/pointwise/labels/labels.jsonl', 'w') as labels_file:
+        for training_doc, test_doc in qid_to_inference_pairs.keys():
             i = qid_to_inference_pairs[(training_doc, test_doc)].copy()
             t = qid_to_inference_pairs[(training_doc, test_doc)].copy()
 
@@ -97,6 +94,9 @@ def persist_data_pointwise(qid_to_split, dataset):
 
             covered_ids.add(i['unknown_doc_id'])
 
+
+            del t['relevant_doc_id']
+            del t['relevant']
             del i['query_id']
             del i['relevant_doc_id']
             del i['relevant']
@@ -125,3 +125,4 @@ if __name__ == '__main__':
     persist_data_pointwise(QID_TO_SPLITS, dataset)
     # print('foo')
     # select_qrels(dataset, 833860, 0)
+    print('finished')
