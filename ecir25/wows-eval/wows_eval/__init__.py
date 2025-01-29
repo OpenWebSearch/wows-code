@@ -3,9 +3,17 @@ from pathlib import Path
 from trectools import misc
 import pandas as pd
 from tira.check_format import JsonlFormat, _fmt
+from tira.rest_api_client import Client
+from tira.third_party_integrations import upload_run_anonymous
 from statistics import mean
+import json
+from auto_ir_metadata import persist_ir_metadata
 
 __version__ = "0.0.1"
+
+import gzip
+
+import tempfile
 
 
 def __sorted(ret):
@@ -35,9 +43,30 @@ def __pairwise_rankings(id_to_query_doc, predictions):
     raise ValueError('Not yet implemented')
 
 
+def __normalize_data(df):
+    if isinstance(df, pd.DataFrame):
+        return __normalize_data([i.to_dict() for _, i in df.iterrows()])
+    else:
+        ret = []
+        for i in df.copy():
+            i = i.copy()
+            for field_to_delete in ['unknown']:
+                if field_to_delete in i:
+                    del i[field_to_delete]
+            ret.append(i)
+        return ret
+
+
 def evaluate(predictions, truths):
     id_to_query_doc = {}
     pairwise = False
+    predictions = __normalize_data(predictions)
+    dataset_id = None
+    if isinstance(truths, str):
+        tira = Client()
+        dataset_id = truths
+        truths = tira.pd.truths(truths)
+        truths = __normalize_data(truths)
 
     for i in truths:
         id_to_query_doc[i['id']] = {'query_id': i['query_id'], 'doc_id': i['unknown_doc_id'], 'qrel': int(i['qrel_unknown_doc'])}
@@ -68,6 +97,15 @@ def evaluate(predictions, truths):
         kendall.append(misc.get_correlation(truth_ranking, predicted_ranking, correlation = "kendall")[0])
         spearman.append(misc.get_correlation(truth_ranking, predicted_ranking, correlation = "spearman")[0])
         pearson.append(misc.get_correlation(truth_ranking, predicted_ranking, correlation = "pearson")[0])
+
+    if dataset_id is not None:
+        with tempfile.TemporaryDirectory(delete=False) as f:
+            f = Path(f)
+            with gzip.open(f / 'predictions.jsonl.gz', 'wt') as output_file:
+                for l in predictions.values():
+                    output_file.write(json.dumps(l) + '\n')
+            persist_ir_metadata(f)
+            upload_run_anonymous(f, dataset_id=dataset_id)
 
     return {'tau_ap': mean(tau_ap), 'kendall': mean(kendall), 'spearman': mean(spearman), 'pearson': mean(pearson)}
 
