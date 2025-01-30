@@ -57,7 +57,7 @@ def __normalize_data(df):
         return ret
 
 
-def evaluate(predictions, truths):
+def evaluate(predictions, truths, system_name, system_description, upload=False, return_df=True):
     id_to_query_doc = {}
     pairwise = False
     predictions = __normalize_data(predictions)
@@ -98,14 +98,15 @@ def evaluate(predictions, truths):
         spearman.append(misc.get_correlation(truth_ranking, predicted_ranking, correlation = "spearman")[0])
         pearson.append(misc.get_correlation(truth_ranking, predicted_ranking, correlation = "pearson")[0])
 
-    if dataset_id is not None:
+    if dataset_id is not None and upload:
         with tempfile.TemporaryDirectory(delete=False) as f:
             f = Path(f)
             with gzip.open(f / 'predictions.jsonl.gz', 'wt') as output_file:
                 for l in predictions.values():
                     output_file.write(json.dumps(l) + '\n')
-            persist_ir_metadata(f)
+            persist_ir_metadata(f, system_name=system_name, system_description=system_description)
             upload_run_anonymous(f, dataset_id=dataset_id)
+            #upload_run_anonymous(f, dataset_id='task_1/foo-pointwise-20250130_0-training', tira_client=Client(base_url='https://127.0.0.1:8080/', verify=False))
 
     return {'tau_ap': mean(tau_ap), 'kendall': mean(kendall), 'spearman': mean(spearman), 'pearson': mean(pearson)}
 
