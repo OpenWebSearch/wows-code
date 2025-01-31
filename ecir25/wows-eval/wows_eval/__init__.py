@@ -57,7 +57,7 @@ def __normalize_data(df):
         return ret
 
 
-def evaluate(predictions, truths, system_name, system_description, upload=False, return_df=True):
+def evaluate(predictions, truths, system_name, system_description, upload=False, environment=None, return_df=True):
     id_to_query_doc = {}
     pairwise = False
     predictions = __normalize_data(predictions)
@@ -104,7 +104,7 @@ def evaluate(predictions, truths, system_name, system_description, upload=False,
             with gzip.open(f / 'predictions.jsonl.gz', 'wt') as output_file:
                 for l in predictions.values():
                     output_file.write(json.dumps(l) + '\n')
-            persist_ir_metadata(f, system_name=system_name, system_description=system_description)
+            persist_ir_metadata(f, system_name=system_name, system_description=system_description, environment=environment)
             upload_run_anonymous(f, dataset_id=dataset_id)
             #upload_run_anonymous(f, dataset_id='task_1/foo-pointwise-20250130_0-training', tira_client=Client(base_url='https://127.0.0.1:8080/', verify=False))
 
