@@ -99,7 +99,7 @@ def evaluate(predictions, truths, system_name, system_description, upload=False,
         pearson.append(misc.get_correlation(truth_ranking, predicted_ranking, correlation = "pearson")[0])
 
     if dataset_id is not None and upload:
-        with tempfile.TemporaryDirectory(delete=False) as f:
+        with tempfile.TemporaryDirectory() as f:
             f = Path(f)
             with gzip.open(f / 'predictions.jsonl.gz', 'wt') as output_file:
                 for l in predictions.values():
