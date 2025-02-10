@@ -22,7 +22,7 @@ class TestEvaluationTest(unittest.TestCase):
             {"id": "5", "query_id": "qid-1", "unknown_doc_id": "d-5", "qrel_unknown_doc": 1},
         ]
 
-        actual = evaluate(predictions, truth_data)
+        actual = evaluate(predictions, truth_data, 'system_name', 'description')
         for k in expected:
             self.assertAlmostEqual(expected[k], actual[k], delta=0.00001, msg=k)
 
@@ -45,7 +45,7 @@ class TestEvaluationTest(unittest.TestCase):
 
         ]
 
-        actual = evaluate(predictions, truth_data)
+        actual = evaluate(predictions, truth_data, 'system_name', 'description')
         for k in expected:
             self.assertAlmostEqual(expected[k], actual[k], delta=0.00001, msg=k)
 
@@ -69,7 +69,7 @@ class TestEvaluationTest(unittest.TestCase):
 
         ]
 
-        actual = evaluate(predictions, truth_data)
+        actual = evaluate(predictions, truth_data, 'system_name', 'description')
         for k in expected:
             self.assertAlmostEqual(expected[k], actual[k], delta=0.00001, msg=k)
 
@@ -93,7 +93,7 @@ class TestEvaluationTest(unittest.TestCase):
 
         ]
 
-        actual = evaluate(predictions, truth_data)
+        actual = evaluate(predictions, truth_data, 'system_name', 'description')
         for k in expected:
             self.assertAlmostEqual(expected[k], actual[k], delta=0.00001, msg=k)
 
@@ -117,7 +117,7 @@ class TestEvaluationTest(unittest.TestCase):
 
         ]
 
-        actual = evaluate(predictions, truth_data)
+        actual = evaluate(predictions, truth_data, 'system_name', 'description')
         for k in expected:
             self.assertAlmostEqual(expected[k], actual[k], delta=0.00001, msg=k)
 
@@ -142,6 +142,6 @@ class TestEvaluationTest(unittest.TestCase):
 
         ]
 
-        actual = evaluate(predictions, truth_data)
+        actual = evaluate(predictions, truth_data, 'system_name', 'description')
         for k in expected:
             self.assertAlmostEqual(expected[k], actual[k], delta=0.00001, msg=k)

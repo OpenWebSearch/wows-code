@@ -40,7 +40,31 @@ def __pointwise_rankings(id_to_query_doc, predictions):
 def __pairwise_rankings(id_to_query_doc, predictions):
     truths_rankings = {}
     predictions_rankings = {}
-    raise ValueError('Not yet implemented')
+
+    for k, v in id_to_query_doc.items():
+        if v['query_id'] not in truths_rankings:
+            truths_rankings[v['query_id']] = {}
+            predictions_rankings[v['query_id']] = {}
+
+        if v['doc_id'] not in truths_rankings[v['query_id']]:
+            truths_rankings[v['query_id']][v['doc_id']] = v['qrel']
+        
+        if v['doc_id'] not in predictions_rankings[v['query_id']]:
+            predictions_rankings[v['query_id']][v['doc_id']] = 0
+
+        predictions_rankings[v['query_id']][v['doc_id']] += float(predictions[k]['probability_relevant'])
+
+
+    ret_truths_ranking = {}
+    ret_predictions_rankings = {}
+
+    for qid, docids in truths_rankings.items():
+        ret_truths_ranking[qid] = [{'doc_id': i, 'score': truths_rankings[qid][i]} for i in docids]
+
+    for qid, docids in predictions_rankings.items():
+        ret_predictions_rankings[qid] = [{'doc_id': i, 'score': predictions_rankings[qid][i]} for i in docids]
+
+    return ret_truths_ranking, ret_predictions_rankings
 
 
 def __normalize_data(df):
