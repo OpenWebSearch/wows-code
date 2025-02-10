@@ -68,8 +68,8 @@ def calculate_pairwise_data(qid_to_split, dataset):
 def persist_data_pairwise(qid_to_split, dataset):
     qid_to_inference_pairs = calculate_pairwise_data(qid_to_split, dataset)
 
-    for training_doc, test_doc in qid_to_inference_pairs.keys():
-        with open('smoke-test-dataset/pairwise/inputs/inputs.jsonl', 'w') as input_file, open('smoke-test-dataset/pairwise/labels/labels.jsonl', 'w') as labels_file:
+    with open('smoke-test-dataset/pairwise/inputs/inputs.jsonl', 'w') as input_file, open('smoke-test-dataset/pairwise/labels/labels.jsonl', 'w') as labels_file:
+        for training_doc, test_doc in qid_to_inference_pairs.keys():
             i = qid_to_inference_pairs[(training_doc, test_doc)].copy()
             t = qid_to_inference_pairs[(training_doc, test_doc)].copy()
 
