@@ -6,7 +6,7 @@ This repository contains all code, tutorials, and baselines for the WOWS-EVAL sh
 
 ## Data Format
 
-We aim to collect pointwise and pairwise relevance assessors. An overview of all datasets for the shared task is available at [https://tira.io/datasets?query=wows-eval](https://archive.tira.io/datasets?query=wows-eval). Please use the smoke test datasets to ensure that your software works as expected before processing the larger test datasets.
+We aim to collect pointwise and pairwise relevance assessors. An overview of all datasets for the shared task is available at [tira.io/datasets?query=wows-eval](https://archive.tira.io/datasets?query=wows-eval). Please use the smoke test datasets to ensure that your software works as expected before processing the larger test datasets.
 
 ### Pointwise Relevance Assessments
 
@@ -28,7 +28,7 @@ The dataset looks like this:
 
 ![example of pointwise data](figures/pointwise-data-example.png)
 
-The task of an relevance assessor is to produce an output in jsonl with two fields per line:
+The task of an pointwise relevance assessor is to produce an output in jsonl with two fields per line:
 - `id`: The identifier for the query-document pair.
 - `probability_relevant`: The probability (between 0 for non-relevant and 1 for relevant) that the document is relevant to the query.
 
@@ -36,24 +36,64 @@ The task of an relevance assessor is to produce an output in jsonl with two fiel
 
 Given a query, a known relevant document, and an document with an unknown relevance to a query, predict the probability that the unknown document is relevant to the query given the known relevant document.
 
+You can directly load the dataset(s) into a [DataFrame](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html) via the tira client (install via `pip3 install tira`) for simplified processing. For instance, execute the following command to load the pairwise smoke test dataset into a DataFrame (see [tira.io/datasets?query=wows-eval](https://archive.tira.io/datasets?query=wows-eval) for an complete overview of dataset identifiers):
 
+```
+from tira.rest_api_client import Client
+tira = Client()
+input_data = tira.pd.inputs('wows-eval/pairwise-smoke-test-20250210-training')
+```
 
+The dataset looks like this:
 
+![example of pointwise data](figures/pairwise-data-example.png)
 
 
 ## Step-by-Step Submission Guide
 
-We use [TIRA](https://www.tira.io) aiming at run submissions enriched with [ir-metadata](https://www.ir-metadata.org/) to improve reproducibility.
+We use [TIRA](https://www.tira.io) with run submissions and encourage to include [ir-metadata](https://www.ir-metadata.org/) documentation for all submitted runs. All our baselines use ir-metadata and monitor the consumed resources to create a run (GPU, RAM, CPU, etc.).
 
-### Step 1: Register to TIRA and to the WOWS-EVAL task
+### Step 1: Install the wows-eval Script to Evaluate and Submit Your Solutions
+
+We have created a python script `wows-eval` that you can use on the command line and in python to evaluate your relevance assessor. You can pass `--upload` on the command line respectively `upload=True` to directly upload your submission to TIRA and will print an ownership ID to stdout that you can use to claim ownership for your submitted run.
+
+Install `wows-eval` via:
+
+```
+pip3 install wows-eval
+```
+
+The easiest option is to use wows-eval from python (assuming that your pipeline uses python). Assuming that you have stored your predictions for the smoke test dataset (see [tira.io/datasets?query=wows-eval](https://archive.tira.io/datasets?query=wows-eval) for an complete overview of dataset identifiers) into a variable `predictions`, you can evaluate and upload your run via like this (complete examples in the baseline notebooks):
+
+![example of wows-eval in python](figures/wows-eval-python.png)
+
+If you do not use python, you can use the `wows-eval` that pip3 installs into your python binaries. The `wows-eval --help` command shows an overview of the usage:
+
+```
+wows-eval --help
+Usage: wows-eval [OPTIONS] PREDICTIONS TRUTHS
+
+  Evaluate the predictions of your relevance assessor passed in a file
+  PREDICTIONS against the TRUTHS (either a file or a string with the TIRA
+  dataset ID). wows-eval calculates ranking correlations between the predicted
+  probabilities that documents are relevant against the ground truth ranking
+  when ordering documents by their ground truth relevance labels.
+
+Options:
+  --upload  Upload predictions to TIRA.
+  --help    Show this message and exit.
+```
+
+Assumed that you have stored your predictions for the smoke test dataset into a file predictions.jsonl, evaluating and uploading your run would look like:
+
+![example of wows-eval in cli](figures/wows-eval-cli.png)
+
+### Step 2: Implement your Relevance Assessors
+
+
+### Step 3: Register to TIRA and to the WOWS-EVAL task
 
 Please register at [tira.io](https://www.tira.io) and navigate to the [WOWS-EVAL](https://www.tira.io/task-overview/wows-eval/) task and click on "Register". You can choose your team name from a list of [fictional](https://en.wikipedia.org/wiki/Category:Fictional_librarians) and [real](https://en.wikipedia.org/wiki/List_of_librarians) librarians ([please drop a message](#contact) if your favourite team name is not in the list).
-
-### Step 2: Install the wows-eval Script to Evaluate and Submit Your Solutions
-
-We have created a python script `wows-eval` that you can use on the command line and in python to evaluate your relevance assessor.
-
-### Step 3: Implement your Relevance Assessors
 
 ### Step 4: 
 

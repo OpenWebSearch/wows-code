@@ -81,7 +81,24 @@ def __normalize_data(df):
         return ret
 
 
-def evaluate(predictions, truths, system_name, system_description, upload=False, environment=None, return_df=True):
+def evaluate(predictions, truths, system_name=None, system_description=None, upload=False, environment=None, return_df=True):
+    """Evaluate the predictions (a dataframe or a list of dictionaries) against the truths. We calculate ranking correlations between the predicted probabilities that documents are relevant against the ground truth ranking when ordering documents by their ground truth relevance labels.
+
+    Args:
+        predictions (a dataframe or a list of dictionaries): The predictions made by a relevance assessor. Each entry must contain a field "id" and a field "probability_relevant".
+        truths (a dataset identifier for the tira dataset or a list of dictionaries or a dataframe): The ground truth relevance labels for each query--document pair.
+        system_name (str, optional): The name of your system. Defaults to None.
+        system_description (str, optional): The description of your system. Defaults to None.
+        upload (bool, optional): Should your run be uploaded to TIRA. Defaults to False.
+        environment (Environment, optional): A tira-measure trace of your experiment execution. Defaults to None.
+        return_df (bool, optional): return the evaluation results as DataFrame. Defaults to True.
+
+    Raises:
+        ValueError: Raised if there is an error.
+
+    Returns:
+        DataFrame/Dictionary: The correlation between the predicted probabilities that documents are relevant and the ground truth relevance labels.
+    """
     id_to_query_doc = {}
     pairwise = False
     predictions = __normalize_data(predictions)
@@ -122,6 +139,12 @@ def evaluate(predictions, truths, system_name, system_description, upload=False,
         spearman.append(misc.get_correlation(truth_ranking, predicted_ranking, correlation = "spearman")[0])
         pearson.append(misc.get_correlation(truth_ranking, predicted_ranking, correlation = "pearson")[0])
 
+    if not system_name:
+        system_name = 'no-system-name'
+
+    if not system_description:
+        system_description = 'no-system-description'
+
     if dataset_id is not None and upload:
         with tempfile.TemporaryDirectory() as f:
             f = Path(f)
@@ -132,13 +155,20 @@ def evaluate(predictions, truths, system_name, system_description, upload=False,
             upload_run_anonymous(f, dataset_id=dataset_id)
             #upload_run_anonymous(f, dataset_id='task_1/foo-pointwise-20250130_0-training', tira_client=Client(base_url='https://127.0.0.1:8080/', verify=False))
 
-    return {'tau_ap': mean(tau_ap), 'kendall': mean(kendall), 'spearman': mean(spearman), 'pearson': mean(pearson)}
+
+    ret = {'system': system_name, 'tau_ap': mean(tau_ap), 'kendall': mean(kendall), 'spearman': mean(spearman), 'pearson': mean(pearson)}
+
+    if return_df:
+        return pd.DataFrame([ret])
+    else:
+        return ret
 
 
-@click.command()
+@click.command(help="Evaluate the predictions of your relevance assessor passed in a file PREDICTIONS against the TRUTHS (either a file or a string with the TIRA dataset ID). wows-eval calculates ranking correlations between the predicted probabilities that documents are relevant against the ground truth ranking when ordering documents by their ground truth relevance labels.")
 @click.argument('predictions', type=str)
 @click.argument('truths', type=str)
-def cli(predictions: str, truths: str):
+@click.option('--upload', type=bool, is_flag=True, help="Upload predictions to TIRA.")
+def cli(predictions: str, truths: str, upload: bool):
     predictions_formatter = JsonlFormat(('id', 'probability_relevant'))
     truths_formatter = JsonlFormat(('id', 'query_id', 'unknown_doc_id', 'qrel_unknown_doc'))
 
@@ -155,11 +185,13 @@ def cli(predictions: str, truths: str):
 
     if result == _fmt.OK:
         actual_truths = truths_formatter.all_lines(Path(truths))
+    elif isinstance(truths, str):
+        actual_truths = truths
     else:
         print('Could not load the truths:\n\n' + msg)
         return
 
-    print(evaluate(actual_predictions, actual_truths))
+    print(evaluate(actual_predictions, actual_truths, return_df=False, upload=upload))
 
 
 if __name__ == '__main__':
