@@ -4,6 +4,8 @@ This repository contains all code, tutorials, and baselines for the WOWS-EVAL sh
 
 ## Goal
 
+With the WOWS-EVAL shared task, we aim to collaboratively and cooperatively enrich the Open Web Index (OWI) with relevance judgments transferred from existing TREC-like test collections. For this, we develop and collect automated relevance assessors (similar to the [LLMJudge shared task](https://github.com/llm4eval/LLMJudge)) that use a TREC-style information need, optionally a document already known as relevant to the information need, and document as input and output a probability that the document is relevant to the query.
+
 ## Data Format
 
 We aim to collect pointwise and pairwise relevance assessors. An overview of all datasets for the shared task is available at [tira.io/datasets?query=wows-eval](https://archive.tira.io/datasets?query=wows-eval). Please use the smoke test datasets to ensure that your software works as expected before processing the larger test datasets.
