@@ -57,7 +57,7 @@ We use [TIRA](https://www.tira.io) with run submissions and encourage to include
 
 ### Step 1: Install the wows-eval Script to Evaluate and Submit Your Solutions
 
-We have created a python script `wows-eval` that you can use on the command line and in python to evaluate your relevance assessor. You can pass `--upload` on the command line respectively `upload=True` to directly upload your submission to TIRA and will print an ownership ID to stdout that you can use to claim ownership for your submitted run.
+We have created a python script `wows-eval` that you can use on the command line and in python to evaluate your relevance assessor. You can pass `--upload` on the command line respectively `upload=True` to directly upload your submission to TIRA and print an ownership ID to stdout that you can use to claim ownership for your submitted run.
 
 Install `wows-eval` via:
 
@@ -92,6 +92,13 @@ Assumed that you have stored your predictions for the smoke test dataset into a 
 
 ### Step 2: Implement your Relevance Assessors
 
+Now that we know the basics, we can start to implement our own point and pairwise relevance assessors. We have a set of baselines available that you can use as starting points:
+
+- [baselines/pointwise-autoqrels.ipynb](baselines/pointwise-autoqrels.ipynb): A pointwise [autoqrels](https://github.com/seanmacavaney/autoqrels) baseline where you could easily modify the prompt and the underlying language model.
+- [baselines/pointwise-naive.ipynb](baselines/pointwise-naive.ipynb): A naive pointwise baseline that always predicts that a document is relevant to a query with a probability of 50%.
+- [baselines/pairwise-autoqrels.ipynb](baselines/pairwise-autoqrels.ipynb): A pairwise [autoqrels](https://github.com/seanmacavaney/autoqrels) baseline where you could easily modify the prompt and the underlying language model.
+- [baselines/pairwise-naive.ipynb](baselines/pairwise-naive.ipynb): A naive pairwise baseline that always predicts that a document is relevant to a query with a probability of 50%.
+
 
 ### Step 3: Register to TIRA and to the WOWS-EVAL task
 
@@ -99,9 +106,9 @@ Please register at [tira.io](https://www.tira.io) and navigate to the [WOWS-EVAL
 
 ### Step 4: 
 
+To finalize your submission to WOWS-EVAL, you must now claim your submission via the URL printed from the `wows-eval` command. In the form, you can overwrite the name and description of your system:
 
-## Tutorials
-
+![example of claim ownership form](../figures/claim-run-in-tira.png)
 
 ## Resources
 
