@@ -108,7 +108,7 @@ Please register at [tira.io](https://www.tira.io) and navigate to the [WOWS-EVAL
 
 To finalize your submission to WOWS-EVAL, you must now claim your submission via the URL printed from the `wows-eval` command. In the form, you can overwrite the name and description of your system:
 
-![example of claim ownership form](../figures/claim-run-in-tira.png)
+![example of claim ownership form](figures/claim-run-in-tira.png)
 
 ## Resources
 
