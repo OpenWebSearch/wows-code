@@ -9,7 +9,7 @@ from statistics import mean
 import json
 from auto_ir_metadata import persist_ir_metadata
 
-__version__ = "0.0.1"
+__version__ = "0.0.2"
 
 import gzip
 
