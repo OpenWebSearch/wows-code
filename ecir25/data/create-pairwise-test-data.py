@@ -105,7 +105,6 @@ covered_ids = set()
 with open(f'{DATA_DIR}/zenodo/test-pairwise/truths/inputs.jsonl', 'r') as f:
     for l in f:
         l = json.loads(l)
-        print(l)
         if l['unknown_doc_id'] in covered_ids:
             continue
 
