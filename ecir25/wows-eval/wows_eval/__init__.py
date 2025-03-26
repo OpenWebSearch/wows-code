@@ -6,8 +6,9 @@ from tira.check_format import JsonlFormat, _fmt
 from tira.rest_api_client import Client
 from tira.third_party_integrations import upload_run_anonymous
 from statistics import mean
+from tirex_tracker import tracked, TrackingHandle, Measure, ALL_MEASURES
 import json
-from auto_ir_metadata import persist_ir_metadata
+import yaml
 
 __version__ = "0.0.2"
 
@@ -81,7 +82,7 @@ def __normalize_data(df):
         return ret
 
 
-def evaluate(predictions, truths, system_name=None, system_description=None, upload=False, environment=None, return_df=True):
+def evaluate(predictions, truths, system_name=None, system_description=None, upload=False, tracking_results=None, return_df=True):
     """Evaluate the predictions (a dataframe or a list of dictionaries) against the truths. We calculate ranking correlations between the predicted probabilities that documents are relevant against the ground truth ranking when ordering documents by their ground truth relevance labels.
 
     Args:
@@ -90,7 +91,7 @@ def evaluate(predictions, truths, system_name=None, system_description=None, upl
         system_name (str, optional): The name of your system. Defaults to None.
         system_description (str, optional): The description of your system. Defaults to None.
         upload (bool, optional): Should your run be uploaded to TIRA. Defaults to False.
-        environment (Environment, optional): A tira-measure trace of your experiment execution. Defaults to None.
+        tracking_results (TrackingHandle, optional): A tirex-tracker trace of your experiment execution. Defaults to None.
         return_df (bool, optional): return the evaluation results as DataFrame. Defaults to True.
 
     Raises:
@@ -145,13 +146,40 @@ def evaluate(predictions, truths, system_name=None, system_description=None, upl
     if not system_description:
         system_description = 'no-system-description'
 
+    if tracking_results is not None and isinstance(tracking_results, dict):
+        raise ValueError('I expected that the tracking_results is a TrackingHandle from tirex-tracker. Got:' + str(tracking_results))
+
     if dataset_id is not None and upload:
         with tempfile.TemporaryDirectory() as f:
             f = Path(f)
             with gzip.open(f / 'predictions.jsonl.gz', 'wt') as output_file:
                 for l in predictions.values():
                     output_file.write(json.dumps(l) + '\n')
-            persist_ir_metadata(f, system_name=system_name, system_description=system_description, environment=environment)
+            
+            mesures_to_skip = set([
+                Measure.TIME_ELAPSED_WALL_CLOCK_MS,
+                Measure.TIME_ELAPSED_USER_MS,
+                Measure.TIME_ELAPSED_SYSTEM_MS,
+                Measure.CPU_USED_PROCESS_PERCENT,
+                Measure.CPU_USED_SYSTEM_PERCENT,
+                Measure.CPU_ENERGY_SYSTEM_JOULES,
+                Measure.RAM_USED_PROCESS_KB,
+                Measure.RAM_USED_SYSTEM_MB,
+                Measure.RAM_AVAILABLE_SYSTEM_MB,
+                Measure.RAM_ENERGY_SYSTEM_JOULES,
+                Measure.GPU_USED_PROCESS_PERCENT,
+                Measure.GPU_USED_SYSTEM_PERCENT,
+                Measure.GPU_VRAM_USED_PROCESS_MB,
+                Measure.GPU_VRAM_USED_SYSTEM_MB,
+                Measure.GPU_ENERGY_SYSTEM_JOULES])
+            measures = [i for i in ALL_MEASURES if i not in mesures_to_skip]
+
+            if tracking_results is None:
+                with tracked(f_or_measures=measures, system_name=system_name, system_description=system_description) as tracking_results:
+                    pass
+
+            with open(f / 'ir-metadata.yml', 'w') as yaml_file:
+                yaml.dump(tracking_results, yaml_file)
             upload_run_anonymous(f, dataset_id=dataset_id)
             #upload_run_anonymous(f, dataset_id='task_1/foo-pointwise-20250130_0-training', tira_client=Client(base_url='https://127.0.0.1:8080/', verify=False))
 

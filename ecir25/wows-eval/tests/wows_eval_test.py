@@ -2,6 +2,7 @@ import unittest
 
 from wows_eval import evaluate
 import pandas as pd
+from tirex_tracker import tracking
 
 class TestEvaluationTest(unittest.TestCase):
     def test_perfect_correlation_01(self):
@@ -22,7 +23,7 @@ class TestEvaluationTest(unittest.TestCase):
             {"id": "5", "query_id": "qid-1", "unknown_doc_id": "d-5", "qrel_unknown_doc": 1},
         ]
 
-        actual = evaluate(predictions, truth_data, 'system_name', 'description')
+        actual = evaluate(predictions, truth_data, 'system_name', 'description', return_df=False)
         for k in expected:
             self.assertAlmostEqual(expected[k], actual[k], delta=0.00001, msg=k)
 
@@ -45,7 +46,7 @@ class TestEvaluationTest(unittest.TestCase):
 
         ]
 
-        actual = evaluate(predictions, truth_data, 'system_name', 'description')
+        actual = evaluate(predictions, truth_data, 'system_name', 'description', return_df=False)
         for k in expected:
             self.assertAlmostEqual(expected[k], actual[k], delta=0.00001, msg=k)
 
@@ -69,7 +70,7 @@ class TestEvaluationTest(unittest.TestCase):
 
         ]
 
-        actual = evaluate(predictions, truth_data, 'system_name', 'description')
+        actual = evaluate(predictions, truth_data, 'system_name', 'description', return_df=False)
         for k in expected:
             self.assertAlmostEqual(expected[k], actual[k], delta=0.00001, msg=k)
 
@@ -93,7 +94,7 @@ class TestEvaluationTest(unittest.TestCase):
 
         ]
 
-        actual = evaluate(predictions, truth_data, 'system_name', 'description')
+        actual = evaluate(predictions, truth_data, 'system_name', 'description', return_df=False)
         for k in expected:
             self.assertAlmostEqual(expected[k], actual[k], delta=0.00001, msg=k)
 
@@ -117,10 +118,9 @@ class TestEvaluationTest(unittest.TestCase):
 
         ]
 
-        actual = evaluate(predictions, truth_data, 'system_name', 'description')
+        actual = evaluate(predictions, truth_data, 'system_name', 'description', return_df=False)
         for k in expected:
             self.assertAlmostEqual(expected[k], actual[k], delta=0.00001, msg=k)
-
 
     def test_perfect_inverse_correlation_02(self):
         expected = {'tau_ap': 0.0, 'kendall': -0.39999999, 'pearson': -0.6, 'spearman': -0.6}
@@ -142,6 +142,60 @@ class TestEvaluationTest(unittest.TestCase):
 
         ]
 
-        actual = evaluate(predictions, truth_data, 'system_name', 'description')
+        actual = evaluate(predictions, truth_data, 'system_name', 'description', return_df=False)
+        for k in expected:
+            self.assertAlmostEqual(expected[k], actual[k], delta=0.00001, msg=k)
+
+    def test_perfect_inverse_correlation_03(self):
+        expected = {'tau_ap': 0.0, 'kendall': -0.39999999, 'pearson': -0.6, 'spearman': -0.6}
+
+        predictions = [
+            {"id": "1", "probability_relevant": -0.2},
+            {"id": "2", "probability_relevant": -0.1},
+            {"id": "3", "probability_relevant": -0.3},
+            {"id": "4", "probability_relevant": -0.1},
+            {"id": "5", "probability_relevant": -0.1},
+
+        ]
+        truth_data = [
+            {"id": "1", "query_id": "qid-1", "unknown_doc_id": "d-1", "qrel_unknown_doc": 2},
+            {"id": "2", "query_id": "qid-1", "unknown_doc_id": "d-2", "qrel_unknown_doc": 1},
+            {"id": "3", "query_id": "qid-1", "unknown_doc_id": "d-3", "qrel_unknown_doc": 3},
+            {"id": "4", "query_id": "qid-1", "unknown_doc_id": "d-4", "qrel_unknown_doc": 1},
+            {"id": "5", "query_id": "qid-1", "unknown_doc_id": "d-5", "qrel_unknown_doc": 1},
+
+        ]
+
+        actual_df = evaluate(predictions, truth_data, 'system_name', 'description')
+        self.assertEqual(1, len(actual_df))
+        actual = actual_df.iloc[0].to_dict()
+        for k in expected:
+            self.assertAlmostEqual(expected[k], actual[k], delta=0.00001, msg=k)
+
+
+    def test_perfect_inverse_correlation_04(self):
+        with tracking() as tracking_results:
+            expected = {'tau_ap': 0.0, 'kendall': -0.39999999, 'pearson': -0.6, 'spearman': -0.6}
+
+            predictions = [
+                {"id": "1", "probability_relevant": -0.2},
+                {"id": "2", "probability_relevant": -0.1},
+                {"id": "3", "probability_relevant": -0.3},
+                {"id": "4", "probability_relevant": -0.1},
+                {"id": "5", "probability_relevant": -0.1},
+
+            ]
+            truth_data = [
+                {"id": "1", "query_id": "qid-1", "unknown_doc_id": "d-1", "qrel_unknown_doc": 2},
+                {"id": "2", "query_id": "qid-1", "unknown_doc_id": "d-2", "qrel_unknown_doc": 1},
+                {"id": "3", "query_id": "qid-1", "unknown_doc_id": "d-3", "qrel_unknown_doc": 3},
+                {"id": "4", "query_id": "qid-1", "unknown_doc_id": "d-4", "qrel_unknown_doc": 1},
+                {"id": "5", "query_id": "qid-1", "unknown_doc_id": "d-5", "qrel_unknown_doc": 1},
+
+            ]
+
+        actual_df = evaluate(predictions, truth_data, 'system_name', 'description', tracking_results=tracking_results)
+        self.assertEqual(1, len(actual_df))
+        actual = actual_df.iloc[0].to_dict()
         for k in expected:
             self.assertAlmostEqual(expected[k], actual[k], delta=0.00001, msg=k)
