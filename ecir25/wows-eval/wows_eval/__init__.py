@@ -6,8 +6,9 @@ from tira.check_format import JsonlFormat, _fmt
 from tira.rest_api_client import Client
 from tira.third_party_integrations import upload_run_anonymous
 from statistics import mean
-from tirex_tracker import tracked, TrackingHandle, Measure, ALL_MEASURES
+from tirex_tracker import tracking
 import json
+from shutil import copytree, copyfile
 import yaml
 
 __version__ = "0.0.2"
@@ -108,37 +109,42 @@ def evaluate(predictions, truths, system_name=None, system_description=None, upl
         tira = Client()
         dataset_id = truths
         truths = tira.pd.truths(truths)
-        truths = __normalize_data(truths)
+        if 'qrel_unknown_doc' not in truths.columns:
+            truths = None
+        else:
+            truths = __normalize_data(truths)
 
-    for i in truths:
-        id_to_query_doc[i['id']] = {'query_id': i['query_id'], 'doc_id': i['unknown_doc_id'], 'qrel': int(i['qrel_unknown_doc'])}
-        if 'relevant_doc_id' in i:
-            pairwise = True
-            id_to_query_doc[i['id']]['relevant_doc_id'] = i['relevant_doc_id']
+    if truths:
+        for i in truths:
+            id_to_query_doc[i['id']] = {'query_id': i['query_id'], 'doc_id': i['unknown_doc_id'], 'qrel': int(i['qrel_unknown_doc'])}
+            if 'relevant_doc_id' in i:
+                pairwise = True
+                id_to_query_doc[i['id']]['relevant_doc_id'] = i['relevant_doc_id']
 
     predictions = {i['id']: i for i in predictions}
 
-    if predictions.keys() != id_to_query_doc.keys():
-        raise ValueError('fooo')
+    if truths:
+        if predictions.keys() != id_to_query_doc.keys():
+            raise ValueError('fooo')
 
-    if pairwise:
-        truths_rankings, predictions_rankings = __pairwise_rankings(id_to_query_doc, predictions)
-    else:
-        truths_rankings, predictions_rankings = __pointwise_rankings(id_to_query_doc, predictions)
+        if pairwise:
+            truths_rankings, predictions_rankings = __pairwise_rankings(id_to_query_doc, predictions)
+        else:
+            truths_rankings, predictions_rankings = __pointwise_rankings(id_to_query_doc, predictions)
 
-    tau_ap = []
-    kendall = []
-    spearman = []
-    pearson = []
+        tau_ap = []
+        kendall = []
+        spearman = []
+        pearson = []
 
-    for query_id in truths_rankings.keys():
-        truth_ranking = __sorted(truths_rankings[query_id])
-        predicted_ranking = __sorted(predictions_rankings[query_id])
+        for query_id in truths_rankings.keys():
+            truth_ranking = __sorted(truths_rankings[query_id])
+            predicted_ranking = __sorted(predictions_rankings[query_id])
 
-        tau_ap.append(misc.get_correlation(truth_ranking, predicted_ranking, correlation = "tauap")[0])
-        kendall.append(misc.get_correlation(truth_ranking, predicted_ranking, correlation = "kendall")[0])
-        spearman.append(misc.get_correlation(truth_ranking, predicted_ranking, correlation = "spearman")[0])
-        pearson.append(misc.get_correlation(truth_ranking, predicted_ranking, correlation = "pearson")[0])
+            tau_ap.append(misc.get_correlation(truth_ranking, predicted_ranking, correlation = "tauap")[0])
+            kendall.append(misc.get_correlation(truth_ranking, predicted_ranking, correlation = "kendall")[0])
+            spearman.append(misc.get_correlation(truth_ranking, predicted_ranking, correlation = "spearman")[0])
+            pearson.append(misc.get_correlation(truth_ranking, predicted_ranking, correlation = "pearson")[0])
 
     if not system_name:
         system_name = 'no-system-name'
@@ -150,41 +156,37 @@ def evaluate(predictions, truths, system_name=None, system_description=None, upl
         raise ValueError('I expected that the tracking_results is a TrackingHandle from tirex-tracker. Got:' + str(tracking_results))
 
     if dataset_id is not None and upload:
-        with tempfile.TemporaryDirectory() as f:
+        with tempfile.TemporaryDirectory(delete=False) as f, tempfile.TemporaryDirectory() as meta:
             f = Path(f)
+            meta = Path(meta)
             with gzip.open(f / 'predictions.jsonl.gz', 'wt') as output_file:
                 for l in predictions.values():
                     output_file.write(json.dumps(l) + '\n')
             
-            mesures_to_skip = set([
-                Measure.TIME_ELAPSED_WALL_CLOCK_MS,
-                Measure.TIME_ELAPSED_USER_MS,
-                Measure.TIME_ELAPSED_SYSTEM_MS,
-                Measure.CPU_USED_PROCESS_PERCENT,
-                Measure.CPU_USED_SYSTEM_PERCENT,
-                Measure.CPU_ENERGY_SYSTEM_JOULES,
-                Measure.RAM_USED_PROCESS_KB,
-                Measure.RAM_USED_SYSTEM_MB,
-                Measure.RAM_AVAILABLE_SYSTEM_MB,
-                Measure.RAM_ENERGY_SYSTEM_JOULES,
-                Measure.GPU_USED_PROCESS_PERCENT,
-                Measure.GPU_USED_SYSTEM_PERCENT,
-                Measure.GPU_VRAM_USED_PROCESS_MB,
-                Measure.GPU_VRAM_USED_SYSTEM_MB,
-                Measure.GPU_ENERGY_SYSTEM_JOULES])
-            measures = [i for i in ALL_MEASURES if i not in mesures_to_skip]
-
-            if tracking_results is None:
-                with tracked(f_or_measures=measures, system_name=system_name, system_description=system_description) as tracking_results:
+            with tracking(system_name=system_name, system_description=system_description, export_file_path=meta / 'ir-metadata.yml') as tracking_results_code:
                     pass
+            if tracking_results is None:
+                tracking_results = tracking_results_code
 
-            with open(f / 'ir-metadata.yml', 'w') as yaml_file:
-                yaml.dump(tracking_results, yaml_file)
+            copytree(tracking_results_code._export_file_path.parent / ".tirex-tracker", f / ".tirex-tracker")
+            metadata = ''
+            with open(tracking_results._export_file_path, 'r') as tmp_f:
+                for l in tmp_f:
+                    if l.startswith('ir_metadata.end') or l.startswith('ir_metadata.start'):
+                        continue
+                    metadata += l
+
+            with open(f / 'ir-metadata.yml', 'w') as tmp_f:
+                tmp_f.write(metadata)
+
             upload_run_anonymous(f, dataset_id=dataset_id)
             #upload_run_anonymous(f, dataset_id='task_1/foo-pointwise-20250130_0-training', tira_client=Client(base_url='https://127.0.0.1:8080/', verify=False))
 
-
-    ret = {'system': system_name, 'tau_ap': mean(tau_ap), 'kendall': mean(kendall), 'spearman': mean(spearman), 'pearson': mean(pearson)}
+    if truths:
+        ret = {'system': system_name, 'tau_ap': mean(tau_ap), 'kendall': mean(kendall), 'spearman': mean(spearman), 'pearson': mean(pearson)}
+    else:
+        print("No truth data is available yet. The evaluation is possible after the deadline when the truth data was published.")
+        return None
 
     if return_df:
         return pd.DataFrame([ret])
