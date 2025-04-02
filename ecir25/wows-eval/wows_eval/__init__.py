@@ -10,7 +10,7 @@ import json
 from shutil import copytree, copyfile
 import yaml
 
-__version__ = "0.0.2"
+__version__ = "0.0.3"
 
 import gzip
 
@@ -83,7 +83,7 @@ def evaluate(predictions, truths, system_name=None, system_description=None, upl
             #upload_run_anonymous(f, dataset_id='task_1/foo-pointwise-20250130_0-training', tira_client=Client(base_url='https://127.0.0.1:8080/', verify=False))
 
     if truths:
-        evaluator = WowsEvalEvaluator('*.jsonl', '*.jsonl', ['wows_tau_ap', 'wows_kendall', 'wows_spearman', 'wows_pearson'])
+        evaluator = WowsEvalEvaluator('*.jsonl', None, '*.jsonl', None, ['wows_tau_ap', 'wows_kendall', 'wows_spearman', 'wows_pearson'])
         ret = evaluator._eval(predictions, truths)
         ret = {'system': system_name, 'tau_ap': ret['wows_tau_ap'], 'kendall': ret['wows_kendall'], 'spearman': ret['wows_spearman'], 'pearson': ret['wows_pearson']}
     else:
