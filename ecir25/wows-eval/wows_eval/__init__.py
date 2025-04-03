@@ -10,7 +10,7 @@ import json
 from shutil import copytree, copyfile
 import yaml
 
-__version__ = "0.0.5"
+__version__ = "0.0.6"
 
 import gzip
 
@@ -65,6 +65,10 @@ def evaluate(predictions, truths, system_name=None, system_description=None, upl
             meta = Path(meta)
             with gzip.open(f / 'predictions.jsonl.gz', 'wt') as output_file:
                 for l in predictions:
+                    for d in ['query', 'relevant', 'unknown']:
+                        if d in l:
+                            del l[d]
+
                     output_file.write(json.dumps(l) + '\n')
             
             with tracking(system_name=system_name, system_description=system_description, export_file_path=meta / 'ir-metadata.yml') as tracking_results_code:
