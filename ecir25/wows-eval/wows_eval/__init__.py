@@ -10,7 +10,7 @@ import json
 from shutil import copytree, copyfile
 import yaml
 
-__version__ = "0.0.4"
+__version__ = "0.0.5"
 
 import gzip
 
