@@ -36,6 +36,10 @@ def evaluate(predictions, truths, system_name=None, system_description=None, upl
     """
     id_to_query_doc = {}
     dataset_id = None
+
+    def evaluator():
+        return WowsEvalEvaluator('*.jsonl', None, '*.jsonl', None, ['wows_tau_ap', 'wows_kendall', 'wows_spearman', 'wows_pearson'])
+
     if isinstance(truths, str):
         tira = Client()
         dataset_id = truths
@@ -43,7 +47,7 @@ def evaluate(predictions, truths, system_name=None, system_description=None, upl
         if 'qrel_unknown_doc' not in truths.columns:
             truths = None
         else:
-            truths = __normalize_data(truths)
+            truths = evaluator().normalize_data(truths)
 
     if not system_name:
         system_name = 'no-system-name'
@@ -53,9 +57,6 @@ def evaluate(predictions, truths, system_name=None, system_description=None, upl
 
     if tracking_results is not None and isinstance(tracking_results, dict):
         raise ValueError('I expected that the tracking_results is a TrackingHandle from tirex-tracker. Got:' + str(tracking_results))
-
-    def evaluator():
-        return WowsEvalEvaluator('*.jsonl', None, '*.jsonl', None, ['wows_tau_ap', 'wows_kendall', 'wows_spearman', 'wows_pearson'])
 
     predictions = evaluator().normalize_data(predictions)
     if dataset_id is not None and upload:
