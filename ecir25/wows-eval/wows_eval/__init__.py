@@ -10,7 +10,7 @@ import json
 from shutil import copytree, copyfile
 import yaml
 
-__version__ = "0.0.3"
+__version__ = "0.0.4"
 
 import gzip
 
@@ -35,7 +35,6 @@ def evaluate(predictions, truths, system_name=None, system_description=None, upl
         DataFrame/Dictionary: The correlation between the predicted probabilities that documents are relevant and the ground truth relevance labels.
     """
     id_to_query_doc = {}
-    pairwise = False
     dataset_id = None
     if isinstance(truths, str):
         tira = Client()
@@ -55,8 +54,12 @@ def evaluate(predictions, truths, system_name=None, system_description=None, upl
     if tracking_results is not None and isinstance(tracking_results, dict):
         raise ValueError('I expected that the tracking_results is a TrackingHandle from tirex-tracker. Got:' + str(tracking_results))
 
+    def evaluator():
+        return WowsEvalEvaluator('*.jsonl', None, '*.jsonl', None, ['wows_tau_ap', 'wows_kendall', 'wows_spearman', 'wows_pearson'])
+
+    predictions = evaluator().normalize_data(predictions)
     if dataset_id is not None and upload:
-        with tempfile.TemporaryDirectory(delete=False) as f, tempfile.TemporaryDirectory() as meta:
+        with tempfile.TemporaryDirectory() as f, tempfile.TemporaryDirectory() as meta:
             f = Path(f)
             meta = Path(meta)
             with gzip.open(f / 'predictions.jsonl.gz', 'wt') as output_file:
@@ -83,8 +86,7 @@ def evaluate(predictions, truths, system_name=None, system_description=None, upl
             #upload_run_anonymous(f, dataset_id='task_1/foo-pointwise-20250130_0-training', tira_client=Client(base_url='https://127.0.0.1:8080/', verify=False))
 
     if truths:
-        evaluator = WowsEvalEvaluator('*.jsonl', None, '*.jsonl', None, ['wows_tau_ap', 'wows_kendall', 'wows_spearman', 'wows_pearson'])
-        ret = evaluator._eval(predictions, truths)
+        ret = evaluator()._eval(predictions, truths)
         ret = {'system': system_name, 'tau_ap': ret['wows_tau_ap'], 'kendall': ret['wows_kendall'], 'spearman': ret['wows_spearman'], 'pearson': ret['wows_pearson']}
     else:
         print("No truth data is available yet. The evaluation is possible after the deadline when the truth data was published.")
