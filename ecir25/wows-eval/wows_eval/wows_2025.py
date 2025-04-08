@@ -27,7 +27,7 @@ for dataset in DATASETS:
         ev = {"dataset": dataset, "team": i['team'], "approach": i['software']}
 
         run_dir = tira.get_run_output(f"{TASK_ID}/{i['team']}/{i['software']}", dataset)
-
-        df.append(evaluator().evaluate(Path(run_dir), DATA_DIR / "truths" / dataset))
+        ev.update(evaluator().evaluate(Path(run_dir), DATA_DIR / "truths" / dataset))
+        df.append(ev)
 
 pd.DataFrame(df).to_json("evaluation.jsonl", lines=True, orient="records")
