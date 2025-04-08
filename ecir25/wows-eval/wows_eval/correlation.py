@@ -14,7 +14,7 @@ class WowsCorrelationEvalEvaluator(WowsEvalEvaluator):
             raise ValueError('I need a run_dirs configuration')
         self.run_dirs = config['run_dirs']
 
-    def to_qrels(query_id, sorted_data):
+    def to_qrels(self, query_id, sorted_data):
         ret = TrecQrel()
         qrels_data = []
         for (qrel, docno) in sorted_data:
@@ -60,8 +60,8 @@ class WowsCorrelationEvalEvaluator(WowsEvalEvaluator):
             truth_ranking = self._WowsEvalEvaluator__sorted(truths_rankings[query_id])
             predicted_ranking = self._WowsEvalEvaluator__sorted(predictions_rankings[query_id])
 
-            truth_qrels = self.to_qrels(truth_ranking)
-            pred_qrels = self.to_qrels(predicted_ranking)
+            truth_qrels = self.to_qrels(query_id, truth_ranking)
+            pred_qrels = self.to_qrels(query_id, predicted_ranking)
 
             truth_eval = []
             pred_eval = []
@@ -72,7 +72,6 @@ class WowsCorrelationEvalEvaluator(WowsEvalEvaluator):
 
                     assert run_path.name not in [i['doc_id'] for i in truth_eval]
                     assert run_path.name not in [i['doc_id'] for i in pred_eval]
-
                     pred_eval.append({"doc_id": run_path.name, "score": TrecEval(run, pred_qrels).get_ndcg(depth=10)})
                     truth_eval.append({"doc_id": run_path.name, "score": TrecEval(run, truth_qrels).get_ndcg(depth=10)})
 
