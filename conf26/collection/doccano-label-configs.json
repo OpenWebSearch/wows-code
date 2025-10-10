@@ -1,0 +1,42 @@
+[
+  {
+    "id": 11349,
+    "text": "Spam (-2)",
+    "prefixKey": null,
+    "suffixKey": null,
+    "backgroundColor": "#9F0500",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 11340,
+    "text": "Irrelevant (0)",
+    "prefixKey": null,
+    "suffixKey": "0",
+    "backgroundColor": "#D33115",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 11339,
+    "text": "Related (1)",
+    "prefixKey": null,
+    "suffixKey": "1",
+    "backgroundColor": "#73D8FF",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 11350,
+    "text": "Highly Relevant (2)",
+    "prefixKey": null,
+    "suffixKey": "2",
+    "backgroundColor": "#A4DD00",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 11351,
+    "text": "Perfectly Relevant (3)",
+    "prefixKey": null,
+    "suffixKey": "3",
+    "backgroundColor": "#194D33",
+    "textColor": "#ffffff"
+  }
+]

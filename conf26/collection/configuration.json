@@ -1,0 +1,5 @@
+{
+    "topics": "topics-final.csv",
+    "runs": "runs",
+    "team-mapping": "topic-mapping.jsonl",
+}
