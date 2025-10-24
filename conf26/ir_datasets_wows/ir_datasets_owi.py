@@ -37,7 +37,7 @@ class OWIDoc(NamedTuple):
        if self.main_content:
            ret += ' ' + self.main_content
 
-    return ret.strip()
+        return ret.strip()
 
 
 class ParquetDocs(BaseDocs):
