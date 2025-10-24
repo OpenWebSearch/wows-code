@@ -49,9 +49,9 @@ class ParquetDocs(BaseDocs):
 
         while batch := results.fetchmany():
             for row in batch:
-                row["doc_id"] = row["id"]
-                row["main_content"] = ir_datasets.util.sax_html_parser(row["main_content"], fields=[None])[0]
-                yield self._doc_cls(*row)
+                ret = self._doc_cls(*row)
+                ret.main_content = ir_datasets.util.sax_html_parser(ret.main_content, fields=[None])[0]
+                yield ret
 
     def docs_cls(self):
         return self._doc_cls
