@@ -31,7 +31,7 @@ class OWIDoc(NamedTuple):
     description: str
 
     def default_text(self):
-        return ir_datasets.util.sax_html_parser(self.main_content, fields=[None])[0]
+        return title + " " + self.main_content
 
 
 class ParquetDocs(BaseDocs):
@@ -50,6 +50,7 @@ class ParquetDocs(BaseDocs):
         while batch := results.fetchmany():
             for row in batch:
                 row["doc_id"] = row["id"]
+                row["main_content"] = ir_datasets.util.sax_html_parser(row["main_content"], fields=[None])[0]
                 yield self._doc_cls(*row)
 
     def docs_cls(self):
