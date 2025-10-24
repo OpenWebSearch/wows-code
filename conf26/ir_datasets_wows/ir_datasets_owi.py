@@ -4,6 +4,7 @@ import duckdb
 import ir_datasets
 from ir_datasets.formats.base import BaseDocs, GenericDoc
 from ir_datasets.indices.base import Docstore
+from ir_datasets.datasets.base import Dataset
 from glob import glob
 import gzip
 import json
@@ -70,16 +71,13 @@ class ParquetDocstore(Docstore):
             for row in batch:
                 yield self._doc_cls(*row)
 
-#D SET s3_access_key_id='';
-#D SET s3_secret_access_key='';
-#D SET s3_session_token='';
-#SET s3_endpoint = 'ir-teach-wise-2025.s3.data.webis.de';
-#SET s3_url_style = 'virtual_hosted';
-#SET s3_use_ssl = true;
+
+def register_to_ir_datasets()
+    docs = ParquetDocs("read_parquet('s3://ir-teach-wise-2025/*.parquet')", doc_cls=OWIDoc)
+    registry.register("wows/owi/2025", Dataset(docs))
 
 
 if __name__ == '__main__':
-    docs = ParquetDocs("read_parquet('s3://ir-teach-wise-2025/*.parquet')", doc_cls=OWIDoc)
     store = ParquetDocstore("read_parquet('s3://ir-teach-wise-2025/*.parquet')", doc_cls=OWIDoc, id_field="id")
 
     docs_to_collect = set()
