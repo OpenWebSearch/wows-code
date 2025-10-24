@@ -72,7 +72,8 @@ class ParquetDocstore(Docstore):
                 yield self._doc_cls(*row)
 
 
-def register_to_ir_datasets()
+def register_to_ir_datasets():
+    from ir_datasets import registry
     docs = ParquetDocs("read_parquet('s3://ir-teach-wise-2025/*.parquet')", doc_cls=OWIDoc)
     registry.register("wows/owi/2025", Dataset(docs))
 
