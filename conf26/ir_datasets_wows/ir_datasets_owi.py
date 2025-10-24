@@ -45,7 +45,7 @@ class ParquetDocs(BaseDocs):
 
     def docs_iter(self):
         fields = ", ".join(self._doc_cls._fields)
-        results = con.query(f"SELECT {fields} FROM {self._path};")
+        results = con.query(f"SELECT id, url, main_content, title, description FROM {self._path};")
 
         while batch := results.fetchmany():
             for row in batch:
