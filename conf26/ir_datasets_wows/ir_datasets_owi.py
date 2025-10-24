@@ -31,7 +31,13 @@ class OWIDoc(NamedTuple):
     description: str
 
     def default_text(self):
-        return title + " " + self.main_content
+       ret = ''
+       if self.title:
+           ret += ' ' + self.title
+       if self.main_content:
+           ret += ' ' + self.main_content
+
+    return ret.strip()
 
 
 class ParquetDocs(BaseDocs):
