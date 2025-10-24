@@ -49,9 +49,9 @@ class ParquetDocs(BaseDocs):
 
         while batch := results.fetchmany():
             for row in batch:
-                ret = self._doc_cls(*row)
-                ret.main_content = ir_datasets.util.sax_html_parser(ret.main_content, fields=[None])[0]
-                yield ret
+                row = list(row)
+                row[2] = ir_datasets.util.sax_html_parser(row[2], fields=[None])[0]
+                yield self._doc_cls(*row)
 
     def docs_cls(self):
         return self._doc_cls
@@ -76,7 +76,9 @@ class ParquetDocstore(Docstore):
 
 def register_to_ir_datasets():
     from ir_datasets import registry
-    docs = ParquetDocs("read_parquet('s3://ir-teach-wise-2025/*.parquet')", doc_cls=OWIDoc)
+    #docs = ParquetDocs("read_parquet('s3://ir-teach-wise-2025/*.parquet')", doc_cls=OWIDoc)
+    # temporary on gammaweb08 for fast access
+    docs = ParquetDocs("read_parquet('/home/webis/owi/*.parquet')", doc_cls=OWIDoc)
     registry.register("wows/owi/2025", Dataset(docs))
 
 
