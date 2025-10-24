@@ -24,7 +24,7 @@ con.execute("""
 
 
 class OWIDoc(NamedTuple):
-    id: str
+    doc_id: str
     url: str
     main_content: str
     title: str
@@ -49,6 +49,7 @@ class ParquetDocs(BaseDocs):
 
         while batch := results.fetchmany():
             for row in batch:
+                row["doc_id"] = row["id"]
                 yield self._doc_cls(*row)
 
     def docs_cls(self):
