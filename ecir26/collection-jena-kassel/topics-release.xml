@@ -1,0 +1,205 @@
+<?xml version='1.0' encoding='utf-8'?>
+<topics>
+  <topic number="51">
+    <description>Alles was die Vorteile sind von Rust Web-Frameworks. Welche gibt es? Vergleichsseiten von gängigen Web-Frameworks.</description>
+    <irrelevant_docnos>a8c786474b56f0e30b9eeb61ba8766b82c30a02a3ff192c6b1de178523667eb2</irrelevant_docnos>
+    <narrative>Relevant are comparison sites of common web frameworks. Not relevant are iron-related sites or websites about Rust frameworks that are not a web framework.</narrative>
+    <relevant_docnos>0af76192c09d82e2701dea8ef9309352edd4c9b4e4ce9a76714751f2b5345764</relevant_docnos>
+    <title>rust web frameworks</title>
+  </topic>
+  <topic number="52">
+    <description>How are pets or animals used in therapy for humans and what are the benefits?</description>
+    <irrelevant_docnos>8c96671bda4e546d3ad2330e5f3328807083b699c3921f11cc23c9dc82ff2d9d,a5d6e28526fd33467976248d541744553f0d963fc3c0e8f4987becc36e349bf6,4c305963d4256ee345f4aa37a612db0df1012b7954f2abdaadd087e5797c16f7</irrelevant_docnos>
+    <narrative>Relevant documents must include details of how pet or animal-assisted therapy is or has been used. Relevant details include information about pet therapy programs, descriptions of the circumstances in which pet therapy is used, the benefits of this type of therapy, the degree of success of this therapy, and any laws or regulations governing it. 
+Documents on therapy for pets is irrelevant.</narrative>
+    <relevant_docnos>615c3d227810554ba628b53c6a1cd557fa0b15e1b831ec854406dd3b034cfff8,1c2884f45042162aa26ec84007cfaa0d8dd4d1b9e0cb96afb64abe4ae6aade6d,67b193a009008d0c7c5dda6f5ce2f7c5d6d7a484b70d18a7b8240662cf9e7c90</relevant_docnos>
+    <title>pet therapy</title>
+  </topic>
+  <topic number="53">
+    <description>Which rare trees (species) exist and where they grow. What are the reasons for the tree being rare?</description>
+    <irrelevant_docnos>8c2dbe4ad46c3f8015b086dbf22e6b355a187a28d080fd4a805e95dd6c539671,95201875e1ccbdcb752500ec2a8e8ab906bea15b0bc549de6a9e0c2b3242da05,39d3e3c11f92ff44dbfe0fb1b075406c81e5e5a8aea5f5db2bde8e7b4e9bb033</irrelevant_docnos>
+    <narrative>Lists of rare trees, reasons why they are rare and where each of them grows are relevant. Such as information about rare tree species. Non-rare trees or lists of other rare things aren't relevant. No computer-science related trees, just biological ones.</narrative>
+    <relevant_docnos>eab888a646c500682e82548585fc6c685ae735f6832aa7e229dcafad85686b80,32cda6ceaa1a04cfaebfa613ad05575760b4ab7486362e1280e5a1e6fcfbbdc4</relevant_docnos>
+    <title>rare trees</title>
+  </topic>
+  <topic number="54">
+    <description>What is active learning in the context of machine learning?</description>
+    <irrelevant_docnos>f5ffc112a86a58a26baf6aa6f5c1de6c06b126bb25eaac815628ac9b8c76da4d,b4f9a3ab7be710b307854edb076fe7c379d8c541d6fb75cb43d7e417801a5cde,2395d49d109eaef94f052c4c07cbec1b47698c6e01bc0afa6743a9a4e2d55dcb</irrelevant_docnos>
+    <narrative>Relevant documents must define the general active learning problem. They should also detail its main components, algorithms, and typical use cases. Documents covering pedagogical learning methods (e.g., interactive lessons for children) are irrelevant. Commercial websites that primarily aim to sell a product or service are also irrelevant.</narrative>
+    <relevant_docnos>e07a58637b8482f4f52351523e74e8737c1a35d2f5af9208d712345a0b7989f0,9816e104cd81012da728fbe2a142e3532b94773470341ca73e58bb218bdc26a1</relevant_docnos>
+    <title>Active learning ml</title>
+  </topic>
+  <topic number="55">
+    <description>How artificial intelligence is applied in healthcare to improve diagnosis, treatment and patient care. The aim is to identify real-world example of AI improving medical practice.</description>
+    <irrelevant_docnos>4fde93c7c224b5cdb6bd57a3c1884f425afa5f83943b47ea662b977239f803d8,18b10c89f7effc8dad1bd0555b613d5b224df27a2e8891822f34cc0127dfa54c</irrelevant_docnos>
+    <narrative>Relevant documents describe practical or research-based applications showing how AI is applied within healthcare. This includes direct medical applications such as medical image analysis, disease prediction or clinical decision support, as well as administrative tasks such as patient data management or hospital resource optimization. Non-relevant documents discuss AI in general or focus on other domains without direct connection to healthcare.</narrative>
+    <relevant_docnos>b237e8e465c6abd2fbbbcfcce326b26bc2168ab7a1f4f107a3ae3930ebc521e0,0e2879d3f64d99adefd7554e3c2c47aa9b7755d0eefd70d844eb565d439140c5</relevant_docnos>
+    <title>Applications for AI in healthcare</title>
+  </topic>
+  <topic number="56">
+    <description>What pc components or prebuilds are good with respect to gaming in 2025. Gaming should be at minimum 1440p, 60 fps. Budget should be interpreted as one of the cheapest ways to archive the gaming goal.</description>
+    <irrelevant_docnos>793326eff66b190b8e9551d7235cc0cdc0c03d64265e7a67c0f02ac0ffdb379d,0fd25ce3f9f2474c6b75deb5d6127052a7dafb8c0ff30bfb526bfb14d3fdd09c</irrelevant_docnos>
+    <narrative>The relevant documents should describe what gaming will mean in 2025 and what is required to build a gaming PC. Relevant documents could include price/performance comparisons or pre-built options. Documents that include other aspects of gaming, such as monitors, laptops or peripherals, are not relevant. Documents that do not focus on budget are also not relevant.</narrative>
+    <relevant_docnos>30997bc9f86f2e07f97fb5867a616cfe57bac5ff5e20c9691ce927a05a567208,636baec19a13476ef0e54734f13fef1d4ca1a6001e80d39871b8ef06d75ad0d2</relevant_docnos>
+    <title>best budget gaming pc 2025</title>
+  </topic>
+  <topic number="57">
+    <description>What are the principal reasons for the concentration lack of the nowadays young generations?</description>
+    <irrelevant_docnos/>
+    <narrative>Relevant documents include reasons explaining the lack of concentration among younger generations. Nowadays, this issue mainly concerns those born after the 2000s. The focus of this topic is the easy access to the internet and how, for young people, it is easy to become accustomed to isolation due to immersive technology and larger causes such as pandemics and others. Relevant to this topic are statistics and arguments from experts such as psychologists or educators who deal directly with students. It isn't relevant topics concerning studies before the 2000s.</narrative>
+    <relevant_docnos/>
+    <title>Lack of concentration</title>
+  </topic>
+  <topic number="58">
+    <description>What are the technical differences between the iPhone 11 and the iPhone 12? I would like to form an opinion, whether I should upgrade my phone or not, based on the differences between my phone (iPhone 11) and a newer model (iPhone 12).</description>
+    <irrelevant_docnos>783e28298253328990f73fd5deee39e21d8643df881042cb8170fa57baf6379a,e83ee15fe96ddba6a1c1d6eec1087c37a502b61f47587e7d85f5a0ab45e7f581,2a95c773345b26812fc15b9962c79ed652a60a5517bfac3844b404df215fcb0b</irrelevant_docnos>
+    <narrative>Relevant documents must include information on both the iPhone 11 and the iPhone 12, comparing their technical differences. Relevant details include information on battery and screen size, camera details such as resolution and zoom options, processor type, weight, color, and connectivity. Relevant documents should list these differences for the base iPhone models. Information on the Pro or Pro Max models of the iPhone is not relevant.</narrative>
+    <relevant_docnos>8b896738d679511217e7e5773a2a592ac9797bec02fb739fdab80466647bafe8</relevant_docnos>
+    <title>iPhone 11 vs 12</title>
+  </topic>
+  <topic number="59">
+    <description>Why did the producers of the tv show Game of Thrones make less episodes in season 7, than in the others?</description>
+    <irrelevant_docnos>d15c8f74fa0483ff29bc1a08e4e236ed78e128e3571272a570c53d0e1f6d621b</irrelevant_docnos>
+    <narrative>Relevant are documents that give reasons for this change in production, irrelevant are documents that misinterpret GoT as some an abbreviation that means something other than Game of Thrones, or documents that are concerned with other sesons.</narrative>
+    <relevant_docnos>7c21095cc31a799561fc233576b90b735a0edc5897c6be004c9e35ea9e57136c</relevant_docnos>
+    <title>GoT why is season 7 shorter</title>
+  </topic>
+  <topic number="60">
+    <description>How does the total cost of ownership of battery-electric passenger cars compare
+with that of gasoline and diesel cars in Europe, and what factors account for
+the differences?</description>
+    <irrelevant_docnos>1c67d7e92be317f8e05ef64b7ba6f02e424b753880750768b32c2d89464bf70f,4fd826d036d5fe150ad830195a9e0d7de26068af9e224ea7189c21e0cf2fe47f,d0112a245cac7ee8c92be421c8a62038c2d163d111a765b00f32ecf3ffc2b823</irrelevant_docnos>
+    <narrative>Relevant: documents must include details of how total ownership costs are
+calculated for electric and combustion cars in Europe and present comparative
+results. Relevant details include purchase price and incentives, energy / fuel
+costs, maintenance and repair, insurance, taxes and fees, depreciation and
+resale value, assumed mileage and holding period, geographic scope, and
+sensitivity analyses or scenarios (e.g., energy prices or incentives). 
+Irrelevant: documents that focus on non-passenger vehicles (e.g., buses, trucks, two-/three-wheelers), non-European markets without transferable assumptions, marketing/PR or news items lacking transparent TCO methodology and quantitative results, studies discussing only technology specs or list prices without ownership-cost modeling, and analyses that do not compare BEV and ICE passenger cars.</narrative>
+    <relevant_docnos>6715f61abe094a5d15411dc2d1d1b9936f89cf4a3af4a414ab81267ae3cef1f3,18d0b4de0b44e70c04524ac99a88081e60648b7429a8d4b7fc0ae44449ea3b03,49d3ed5cb98384f98cea9dc9a96ed6c6d5bfe4b92fd8c67f8135bddc05086575</relevant_docnos>
+    <title>Total cost of ownership for electric vs combustion cars in Europe</title>
+  </topic>
+  <topic number="61">
+    <description>The process of training artificial intelligence or machine learning models</description>
+    <irrelevant_docnos>09365b78687a5f8ba4d035e9ff434c4e0b9815297ad3ec39e7cb90e9dd60bc47,dcf579eeb30209945886f51e2bb6659893050cf0146163f0f1c687537692f479,973dc5578eba4e323be330ea3bc0804d2f599d3ba2801dbc7cfcb16f21f7f228</irrelevant_docnos>
+    <narrative>Relevant documents should describe how AI or machine learning models are trained. This includes training methods (e.g., supervised, unsupervised, reinforcement learning), optimization algorithms, data preparation, use of frameworks, and challenges like bias or computational cost.
+Documents focusing on human training with AI tools, are not relevant.</narrative>
+    <relevant_docnos>27386093bb3a6e90c3cd59fedc6abfe9ad5d6e37f7e8c7d103e53e363c0e0a9e,ec5cac44bd942e17491dc0f7ef10439cda5e54be3f0f4c15eaae7f348f93953d,10392259634068055dcb3bd4009f65bd12fd3fab1eed3a2314d9939165addf1c</relevant_docnos>
+    <title>AI Training</title>
+  </topic>
+  <topic number="62">
+    <description>How does veganism as a dietary choice affect dog's health?</description>
+    <irrelevant_docnos>fbb795de39fd86606f81caeab64bbb3c7809c23ad9337acbcb0ab550451c6f03,f061311da277fc160f59cb2b5508ca1ae6673ec059ab196525d124492fa98a54,d05418608805ec6ad18be86953e3bba647127467f8f0542d74b959bb1e982544</irrelevant_docnos>
+    <narrative>Relevant sources include those that mention the effect of veganism as a dietary choice for dogs in the context of health and life expectancy. Sources that focus on vegan dog food in the context of sales and advertisement are irrelevant. Sources about hot dogs are also not relevant.</narrative>
+    <relevant_docnos>45ac759c051a156178bc17f3feccaa74ca50bb43534b40721d3096f1690421b2,ceec8328a6f9c3b08392d15b10149363338e58267a6c1b62faa5c7fb1f490c56,dc651afd34da5c25106d84d61b8787e73c0d3e56077d3654bebc08770fb00dfc</relevant_docnos>
+    <title>vegan dog</title>
+  </topic>
+  <topic number="63">
+    <description>What is the definition of dog whistle as a political term</description>
+    <irrelevant_docnos>2e3930d1d50fbe9e0143be1e8ea35d0cae442e6f8623b79a555a79bd56dd7f9e,e4169ccee0473e19bbcc6dbdb778130f32de584b1b7ea2592a67898a3bc84d55,a41703cec0048dfc50bc337c8011963e87abad76735bd05ee9369d5eb587214e</irrelevant_docnos>
+    <narrative>Relevant documents include explanations of dog whistle as a political term and examples of its historical and current usage. Not relevant documents are those that refer to silent whistles, a type of whistle that emits sound in the ultrasonic range that used to train dogs.
+
+Sources that don't explain the definition of dog whistle but uses it in a political context are also irrelevant.</narrative>
+    <relevant_docnos>cff298614f3801cc2b832fcfe6faa3b7fab712677d0bb7355fb08e5a4ea7cbb0</relevant_docnos>
+    <title>dog whistle</title>
+  </topic>
+  <topic number="64">
+    <description>What is the syntax of the teleport command in Minecraft?</description>
+    <irrelevant_docnos>fe06e42fd22876ba196b9602d1b20683555599ce72f90e059445a0dbd325b5f9,cd4071fac6967d6589540fe288a71138b4091516ea12d10f975a263617d5ddfd</irrelevant_docnos>
+    <narrative>This question is specifically about the syntax of the teleport command in Minecraft.
+Relevant documents are those that explain the different input options, mention when the command was added to Minecraft, and show examples of how to use it.
+Irrelevant documents are anything not related to Minecraft.</narrative>
+    <relevant_docnos>00fb793062de36fd9c0f50eb8a6dbb41f6727b33f347a757b272007f356358d1</relevant_docnos>
+    <title>mc teleport command</title>
+  </topic>
+  <topic number="65">
+    <description>How do dogs positively influence the mental health of humans?</description>
+    <irrelevant_docnos>79f5b0d9bedb6089a6bf3b8975643f5808cc43fc8fb66b3b6c9c4cc64e102455,158df0f30972a54b8afd5a4fcc37e0c8c8e5f250b3c8e42579f49bf4688ca480,9f558fa8ae6cca67b95c4d3c1f1dc837a2af6720e8ca8fe89a5f649c5aac2044</irrelevant_docnos>
+    <narrative>Relevant documents must specifically describe how interaction with dogs improves human mental health. Relevant details include evidence or studies showing reductions in stress, anxiety, loneliness, or depressive symptoms through dog ownership, daily interaction, or structured therapy sessions with dogs. 
+Documents that discuss the mental health benefits of animals or pets in general without focusing on dogs are irrelevant. Likewise, documents about the mental health of dogs themselves, general dog care, or training techniques are irrelevant. Documents about people's mental health in general are also irrelevant.</narrative>
+    <relevant_docnos>571fb9c141a32f928f6c190b3bc095c957f25a28c3056d9e7a4c789887dcf74f,cff54f1891bebd02879b1dbcffd06a97233df9ccf7bb8cd77d4256898b7bbfe5,44a2cb5a96261f447d7110c7dcc98ad663b09ea4741744f80d33da280f4d1943</relevant_docnos>
+    <title>dogs mental health</title>
+  </topic>
+  <topic number="66">
+    <description>Search for dog breeds that posess white or very light fur.</description>
+    <irrelevant_docnos>5dae365a378ed5a1670d852389748c515ba5d79933fe0e209dd81a52330cc799,00cdfcdf3d604320f0bb61fec1b7e453681d214ecf4a037cf6417a680c1ccaef,05c3095b7897da1808895ac4a4275752dd89c5f43403ed83f290164e0bf1fc41</irrelevant_docnos>
+    <narrative>Relevant documents must include information of dog breeds with white or very light fur. The results should include pictures and distinguishing features of different matching dog breeds. Information on where to buy matching dogs is also suitable. Not relevant are results regarding other animal species (i.e. cats), fur coats and other clothing articles as well as branded products/companies that use the phrase "White Dog".</narrative>
+    <relevant_docnos>4fe1c6a4f7ef7e3ee4cda36400b3169eab2d7b6c026539f4c4636d7752e28ba7,b847f90f699cb2b260cc6f37ca5960d8472e417886d69dae65a6d8ca608da9e6,b8cc2e46e584c94e581a14530e111d3cb7efc63c7cf155ad09a2d6e9019242de</relevant_docnos>
+    <title>white dogs</title>
+  </topic>
+  <topic number="67">
+    <description>How is artificial intelligence affecting employment in various industries, and what are the potential benefits or mitigation strategies?</description>
+    <irrelevant_docnos>e1b74ac9c35188b40746bb4847e0aa86004c95e87cff4c204f3ab49c3914b303</irrelevant_docnos>
+    <narrative>- Relevant documents must include details on how AI technologies, such as automation or machine learning, are causing job losses or transformations in specific sectors like manufacturing, healthcare, or creative fields.
+
+- Relevant details include: case studies of AI implementation leading to workforce changes, statistics on job displacement rates, discussions of reskilling programs or policies to address the impacts, economic impacts, and any regulations or ethical considerations governing AI's role in employment.
+
+- Documents are not relevant if they only discuss AI in general terms without connecting to employment effects (e.g., overviews of AI history or technical specs), or if they focus solely on AI's positive job creation without addressing displacement.
+
+- For misunderstandings: If a document interprets "AI job displacement" as voluntary career shifts due to tech adoption rather than involuntary losses, it is not relevant unless it ties back to forced changes; relevance requires evidence of negative or transformative impacts on workers.</narrative>
+    <relevant_docnos>963faa92e0420b0bb6edcfd0bb02c01e650b76f2e3a31cc0380e0e3ebd20d150,53171f72e6d01786c6f1080ce6b0bfa01797bae725289d773e7617d8bfcca366,49dd9f0a915789a362c551206a1fce6ec2931476a59728733cb315d21d09cf23</relevant_docnos>
+    <title>AI job displacement</title>
+  </topic>
+  <topic number="68">
+    <description>Does looking at screens in the dark harm your eyes, and what evidence exists about potential short-term or long-term effects?</description>
+    <irrelevant_docnos>774cabeec0ce1fe104187e8af184e84bffa699b5728f9b403927551062dbde48,676246ec3c5cfcecfcbf0b071ec3455f3c75144599bf191e011c8fb33d3f7772,001159a70ad7e1f52bda9ae4209b72b12f6a36ee8d04d3ba88c0d8858ea2f312</irrelevant_docnos>
+    <narrative>Relevant documents must include information about how screen use in low-light or dark environments affects eye health. Relevant details include descriptions of eye strain, digital eye fatigue, or retinal effects, explanations of how light exposure or contrast in darkness influences vision, and any studies, expert opinions, or medical guidance related to these effects. Documents discussing preventive measures (e.g., screen filters, lighting conditions, or usage guidelines) are also relevant.</narrative>
+    <relevant_docnos>d0067eca4a7ca790a8f8d13512c8be8d2d297a4feaed3cddffae5e4177e2933f,68dc8eef5495e81f3c077b8d8c420c792e253b58a6086a69d4fa91cc991a4f87,8f9cf4c2022674b0207a49bfd31a0e111f736e47a5b73e0f008f07fcded521b8</relevant_docnos>
+    <title>screen use in the dark and eye health</title>
+  </topic>
+  <topic number="69">
+    <description>What is the "getting things done" method of David Allen about?</description>
+    <irrelevant_docnos>9f9c7e9674275ecb46b34407ce60004864f6145939dc2245fdacdb7648361c78,418833400109c4076ab43a7d490ab64b0853aac4054408ae86ea0e2931ac778f</irrelevant_docnos>
+    <narrative>Any relevant documents should have info about the book “Getting Things Done” of David Allen or his methodology. Anything related to getting things done or productivity that is not connected to David Allen is not relevant.</narrative>
+    <relevant_docnos>6ab1e3a0a829e007bfec7b709d15961bfe58fcc651207f2fdee237a66ee82564,496f2f54c125c405eba7215f731ca306208677170e7bb8707bad402f4cdfb329</relevant_docnos>
+    <title>getting things done</title>
+  </topic>
+  <topic number="70">
+    <description>The user is seeking information on how to maintain the health and well-being of senior dogs, focusing on the best nutritional practices and health care approaches for older dogs. The user is particularly interested in diet recommendations, including the types of food that are most beneficial for older dogs and how their nutritional needs change as they age. Additionally, the user is looking for information on common health issues that affect senior dogs and how these can be managed or prevented. Veterinary advice and research studies that provide guidelines on age-appropriate care are also important.</description>
+    <irrelevant_docnos>927cc237a60eab035519c7f9627e650623a8c7a03f6489a2c8488bbe055191ec,444c8e7fe80ea2cae50cd9f68ae405e2598df47bd8dbe67daecb220b16113fe3</irrelevant_docnos>
+    <narrative>Relevant Content:
+- Veterinary advice and research studies on the health care needs of senior dogs, including preventative measures and management of common age-related conditions.
+- Guidelines on dog nutrition, specifically for senior dogs, including the types of foods that provide the necessary nutrients for older dogs.
+- Articles or books on senior dog care, focusing on dietary needs and physical exercise for old dogs.
+- Case studies or expert opinions on managing the health and nutrition of senior dogs.
+
+Non-relevant Content:
+- General dog care tips not specific to senior dogs (e.g., puppy care or basic training).
+- Promotional content for dog food or supplements that does not include scientifically backed information or recommendations from veterinary experts.
+- Information on specific dog breeds that can't be translated and applied to all senior dogs.
+- Personal anecdotal stories or non-scientific advice about senior dogs, unless it includes professional or veterinary recommendations.</narrative>
+    <relevant_docnos>10ce1eabe50a1fc88047822100133c6f2a5dd50193515c0aed7025de9f96dfc0,b2b357f1839434c8b837caedcdf6c654ceabb006a917695038253ad2b1ad7d5f,a09f5c244e70e89a13a3dac241a795c9c7cc3a7ba79e160a597c0ec690754583</relevant_docnos>
+    <title>Best nutrition and health care for senior dogs</title>
+  </topic>
+  <topic number="71">
+    <description>What are the works of J. R. R. Tolkien? Which books, poems etc. did he pen?</description>
+    <irrelevant_docnos>4e4285c651c9f2bc9ce6af5b062249d3ff9a19ee9566017049b1b93169e8e387</irrelevant_docnos>
+    <narrative>Relevant documents must include a list of J. R. R. Tolkiens works. Irrelevant are documents that focus on something else like his life for example.</narrative>
+    <relevant_docnos>34c571ec36716900b644dcabc9de9f910a384273961321c9ba61f994d1782484</relevant_docnos>
+    <title>J. R. R. Tolkien</title>
+  </topic>
+  <topic number="72">
+    <description>Which companies produce great chocolate pudding? What are some chocolate pudding recipes? How can good chocolate pudding be made?</description>
+    <irrelevant_docnos>426d3490a0b256965c0b4c89d9edc5be9af48e578245a88cab6399ef32e17692</irrelevant_docnos>
+    <narrative>Relevant documents include recipes for chocolate pudding or recommendations for specific chocolate pudding producers. Relevant details for the recipes include the ingredients and instructions for making chocolate pudding. Relevant details for recommendations include information about what companies are recommended or in which stores the recommended chocolate pudding can be found.
+Not relevant are other flavours of pudding or other food made with chocolate.</narrative>
+    <relevant_docnos>9eb910a9ac7b9c6478201c9fca991e792cfa8a98107e9ad471223f1e35fee313</relevant_docnos>
+    <title>Best chocolate pudding</title>
+  </topic>
+  <topic number="73">
+    <description>How is energy from renewable sources such as solar and wind stored, and what are the main technologies and challenges involved?</description>
+    <irrelevant_docnos>2548da6a768e38c9b3d472c9eae6de82c87038e7fe4a22c47b3a8d300ae59d96</irrelevant_docnos>
+    <narrative>Relevant documents must describe or discuss how energy generated from renewable sources is stored for later use. This includes documents that explain or evaluate energy storage technologies, their applications, performance, costs, or policies influencing their use. Documents that analyze case studies of renewable energy systems integrating storage, compare storage methods, or discuss technological or economic barriers are also relevant.
+
+Documents not relevant include those focusing solely on fossil fuel energy storage, electrical grid management without mention of renewable sources, or general discussions of renewable energy generation that do not address storage mechanisms. Documents describing small-scale storage unrelated to renewable energy (e.g., consumer electronics batteries) or purely theoretical energy concepts without practical connection to renewable storage applications are also not relevant.</narrative>
+    <relevant_docnos>eb5e5d83c5742af735a9d6452805ee00d960c7bafa4afb59523d61410ba84a53</relevant_docnos>
+    <title>renewable energy storage</title>
+  </topic>
+  <topic number="74">
+    <description>What is Alcoholics Anonymous, how is the organisation structered and how does it help people with alcohol-related problems?</description>
+    <irrelevant_docnos>d1bd7ffa3d3d6cc65e3ff30c9fe8af47cdaa2852e7f22541134de50d442e209a</irrelevant_docnos>
+    <narrative>Relevant documents should give information about Alcoholics Anonymous' purpose and their concepts. Relevant details include information about how the meetings proceed, what the goals are, how high the success rate is and how to find a near Alcoholics Anonymous group. Information about other unrelated organisations, personal stories or alcohol use without connection to the Alcoholics Anonymous are irrelevant.</narrative>
+    <relevant_docnos>a0c931da4cc3a8dc4609c291f312f44dca86461b0b3467b48069e083769e03b1,b5861cf98ac8d31ce303e111b78530fdd70a811842d4075e070dfd6d12287d43</relevant_docnos>
+    <title>Alcoholics Anonymous</title>
+  </topic>
+</topics>
