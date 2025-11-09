@@ -1,0 +1,18 @@
+[
+  {
+    "id": 11340,
+    "text": "Not Relevant (0)",
+    "prefixKey": null,
+    "suffixKey": "0",
+    "backgroundColor": "#D33115",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 11351,
+    "text": "Relevant (1)",
+    "prefixKey": null,
+    "suffixKey": "1",
+    "backgroundColor": "#194D33",
+    "textColor": "#ffffff"
+  }
+]
