@@ -1,0 +1,6 @@
+{
+    "topics": "topics.xml",
+    "runs": "runs",
+    "team-mapping": "topic-mapping.jsonl",
+    "chatnoir-index": "wows-owi/2025"
+}
