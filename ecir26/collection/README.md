@@ -41,3 +41,9 @@ teaching-ir pool-documents --pooling-depth 11 .
 ```
 teaching-ir prepare-relevance-judgments --doccano-url https://doccano.web.webis.de/ --doccano-username admin --doccano-password TODO wows doccano-judgment-pool.jsonl
 ```
+
+## 4. Export QRELS
+
+```
+teaching-ir export-relevance-judgments --doccano-url https://doccano.web.webis.de/ --doccano-username admin --doccano-password TODO wows .
+``
