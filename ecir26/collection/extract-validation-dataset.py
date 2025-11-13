@@ -2,7 +2,7 @@
 import pandas as pd
 from statistics import mean
 
-TOPIC_IDS = set(["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"])
+TOPIC_IDS = set(["3", "4", "7", "8", "13", "15", "16", "18", "20", "23", "24", "31", "32", "34", "39", "42", "43", "44", "46", "48", "52", "54", "58", "60", "64", "68", "69", "74"])
 
 topics = pd.read_csv("topics-final.csv")
 reformatted_topics = []
