@@ -10,12 +10,12 @@ reformatted_topics = []
 for _, topic in topics.iterrows():
     if str(topic["qid"]) not in TOPIC_IDS:
         continue
-    reformatted_topics.append(f'<topic number="{topic["qid"]}">\n  <query>{topic["query"]}</query>\n  <description>{topic["description"]}</description>\n  <narrative>{topic["narrative"]}</narrative>\n</topic>\n')
+    reformatted_topics.append(f'<topic number="{topic["qid"]}">\n  <num>{topic["qid"]}</num><title>{topic["query"]}</title>\n  <description>{topic["description"]}</description>\n  <narrative>{topic["narrative"]}</narrative>\n</topic>\n')
 
 assert len(reformatted_topics) == len(TOPIC_IDS)
 
 with open("../subsampled-corpora/radboud-validation/topics.xml", "wt") as f:
-    f.write("\n\n".join(reformatted_topics))
+    f.write("<topics>\n" + ("".join(reformatted_topics)) + "\n</topics>")
 
 qid_to_doc_to_judgments = {}
 qrels_raw = pd.read_json("raw-exported-doccano-judgments.jsonl", lines=True)

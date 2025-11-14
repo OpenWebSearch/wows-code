@@ -2,11 +2,11 @@
 configs:
 - config_name: inputs
   data_files:
-  - split: test
+  - split: train
     path: ["corpus.jsonl.gz", "queries.jsonl"]
 - config_name: truths
   data_files:
-  - split: test
+  - split: train
     path: ["qrels.txt", "queries.jsonl", "dataset-metadata.json", "config.json", "subsample.json"]
 
 tira_configs:
@@ -20,7 +20,7 @@ tira_configs:
   input_format:
     name: "lsr-benchmark-inputs"
     config:
-      max_size_mb: 200
+      max_size_mb: 500
   truth_format:
     name: "qrels.txt"
   evaluator:
