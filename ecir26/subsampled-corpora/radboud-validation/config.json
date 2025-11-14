@@ -3,5 +3,6 @@
     "chatnoir-index": "wows-owi/2025",
     "subsample_depth": 500,
     "qrels": "radboud-validation/qrels.txt",
-    "topics": "radboud-validation/topics.xml"
+    "topics": "radboud-validation/topics.xml",
+    "include-fields": ["title", "url", "description"]
 }

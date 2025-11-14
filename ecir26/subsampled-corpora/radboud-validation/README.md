@@ -1,0 +1,32 @@
+---
+configs:
+- config_name: inputs
+  data_files:
+  - split: test
+    path: ["corpus.jsonl.gz", "queries.jsonl"]
+- config_name: truths
+  data_files:
+  - split: test
+    path: ["qrels.txt", "queries.jsonl", "dataset-metadata.json", "config.json", "subsample.json"]
+
+tira_configs:
+  resolve_inputs_to: "."
+  resolve_truths_to: "."
+  baseline:
+    link: https://github.com/reneuir/lsr-benchmark/tree/main/step-03-retrieval-approaches/pyterrier-naive
+    command: /run-pyterrier.py --dataset $inputDataset --retrieval BM25 --output $outputDir
+    format:
+      name: ["run.txt", "lightning-ir-document-embeddings", "lightning-ir-query-embeddings"]
+  input_format:
+    name: "lsr-benchmark-inputs"
+    config:
+      max_size_mb: 200
+  truth_format:
+    name: "qrels.txt"
+  evaluator:
+    measures: ["nDCG@10","P@10"]
+---
+
+# The Validation Dataset created in the Radboud IR course
+
+
