@@ -21,7 +21,7 @@ def load_topics(irds, field):
 def main(dataset, query_field, output, retrieval, k):
     topics = load_topics(dataset, query_field)
     tag = f"chatnoir-{query_field}-{retrieval}-{k}"
-    target_dir = output / tag
+    target_dir = output / dataset/ tag
     target_dir.mkdir(parents=True, exist_ok=True)
     description = f"This is a chatnoir-pyterrier baseline that retrieves the top-{k} results via the {query_field} field against ChatNoir using the {retrieval} model."
 
