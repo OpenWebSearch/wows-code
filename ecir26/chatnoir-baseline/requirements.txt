@@ -3,4 +3,4 @@ tira
 ir_datasets
 tirex-tracker
 click
-git+https://github.com/chatnoir-eu/chatnoir-api.git
+chatnoir-pyterrier
