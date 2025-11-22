@@ -4,7 +4,7 @@ import pyterrier as pt
 from pathlib import Path
 from tira.third_party_integrations import ensure_pyterrier_is_loaded
 from chatnoir_pyterrier import ChatNoirRetrieve
-from tirex_tracker import tracking
+from tirex_tracker import tracking, ExportFormat
 
 
 def load_topics(irds, field):
@@ -26,7 +26,7 @@ def main(dataset, query_field, output, retrieval, k):
     target_dir.mkdir(parents=True, exist_ok=True)
     description = f"This is a chatnoir-pyterrier baseline that retrieves the top-{k} results via the {query_field} field against ChatNoir using the {retrieval} model."
 
-    with tracking(export_file_path=target_dir / "retrieval-metadata.yml", system_description=description, system_name=tag):
+    with tracking(export_file_path=target_dir / "retrieval-metadata.yml", export_format=ExportFormat.IR_METADATA, system_description=description, system_name=tag):
         chatnoir = ChatNoirRetrieve(index="wows-owi/2025", search_method=retrieval, features=[], verbose=True, num_results=k, page_size=k)
         run = chatnoir(topics)
 
