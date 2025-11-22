@@ -1,0 +1,5 @@
+python-terrier==0.13.2
+tira
+ir_datasets
+tirex-tracker
+git+https://github.com/chatnoir-eu/chatnoir-api.git
