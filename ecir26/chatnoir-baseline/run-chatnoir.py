@@ -26,7 +26,8 @@ def main(dataset, query_field, output, retrieval, k):
     description = f"This is a chatnoir-pyterrier baseline that retrieves the top-{k} results via the {query_field} field against ChatNoir using the {retrieval} model."
 
     with tracking(export_file_path=target_dir / "retrieval-metadata.yml", system_description=description, system_name=tag):
-        run = ChatNoirRetrieve(index="wows-owi/2025", search_method=retrieval, features=[], verbose=True, num_results=k, page_size=k)
+        chatnoir = ChatNoirRetrieve(index="wows-owi/2025", search_method=retrieval, features=[], verbose=True, num_results=k, page_size=k)
+        run = chatnoir(topics)
 
     pt.io.write_results(run, target_dir / "run.txt.gz")
 
