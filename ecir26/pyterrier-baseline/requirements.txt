@@ -1,4 +1,4 @@
-python-terrier==0.13.2
+python-terrier
 tira
 ir_datasets
 tirex-tracker==0.2.15
