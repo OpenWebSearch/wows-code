@@ -23,6 +23,12 @@ Options:
   --help                          Show this message and exit.
 ```
 
+## Upload some run via:
+
+```
+tira-cli upload --directory DIRECTORY-WITH-RUN
+```
+
 ## Run All Variants
 
 We run retrieval via:
