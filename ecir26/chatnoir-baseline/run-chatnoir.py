@@ -3,6 +3,7 @@ import click
 import pyterrier as pt
 from pathlib import Path
 from tira.third_party_integrations import ensure_pyterrier_is_loaded
+from chatnoir_pyterrier import ChatNoirRetrieve
 from tirex_tracker import tracking
 
 
