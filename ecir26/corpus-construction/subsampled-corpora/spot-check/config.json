@@ -1,0 +1,8 @@
+{
+    "runs": "../collection/runs/",
+    "chatnoir-index": "wows-owi/2025",
+    "subsample_depth": 20,
+    "qrels": "spot-check/qrels.txt",
+    "topics": "spot-check/topics.xml",
+    "include-fields": ["title", "url", "description"]
+}
