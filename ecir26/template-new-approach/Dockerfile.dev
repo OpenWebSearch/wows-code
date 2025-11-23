@@ -1,4 +1,4 @@
-# docker build -t ghcr.io/openwebsearch/wows-code/ecir-2026-pyterrier:latest .
+# docker build -f Dockerfile.dev -t ghcr.io/openwebsearch/wows-code/ecir-2026-pyterrier:latest .
 FROM ubuntu:jammy
 
 
