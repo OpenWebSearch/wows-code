@@ -16,7 +16,7 @@ tira_configs:
     link: https://github.com/reneuir/lsr-benchmark/tree/main/step-03-retrieval-approaches/lexical/pyterrier-pisa
     command: /run-pyterrier-pisa.py --dataset $inputDataset --output $outputDir
     format:
-      name: ["run.txt", "lightning-ir-document-embeddings", "lightning-ir-query-embeddings"]
+      name: ["run-with-metadata", "lightning-ir-document-embeddings", "lightning-ir-query-embeddings"]
   input_format:
     name: "lsr-benchmark-inputs"
     config:
