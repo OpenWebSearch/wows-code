@@ -19,7 +19,7 @@ def main(dataset, index, retrieval_model, output):
 
     tag = f"pyterrier-{retrieval_model}-on-{index}"
     target_dir = output / dataset / tag
-    description = "This is a PyTerrier retriever using the retrieval model {retriever} retrieving on the {index} text representation of the documents. Everything is set to the defaults."
+    description = f"This is a PyTerrier retriever using the retrieval model {retriever} retrieving on the {index} text representation of the documents. Everything is set to the defaults."
 
     with tracking(export_file_path=target_dir / "retrieval-metadata.yml", export_format=ExportFormat.IR_METADATA, system_description=description, system_name=tag):
         run = retriever(topics)
