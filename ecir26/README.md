@@ -47,7 +47,7 @@ tira-cli upload --dry-run --directory submission-skeleton
 
 For valid submissions, the output should look like:
 
-![Screenshot_20250430_181119](https://github.com/user-attachments/assets/1d03de4a-19e3-417c-beee-40a08469c4f4)
+<img width="968" height="183" alt="Screenshot_20251123_192741" src="https://github.com/user-attachments/assets/7498f0d6-8442-4e06-82e1-3a8508a524b6" />
 
 
 3. Upload your submission (i.e., remove the `--dry-run` flag and login):
