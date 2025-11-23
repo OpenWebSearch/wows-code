@@ -1,0 +1,5 @@
+python-terrier
+tira
+ir_datasets
+tirex-tracker==0.2.15
+click
