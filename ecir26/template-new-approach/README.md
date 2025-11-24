@@ -1,4 +1,4 @@
-# PyTerrier Baseline
+# An Artifact-Free Approach
 
 
 Get an overview of all possibilities to execute this baseline via:
@@ -17,7 +17,7 @@ Options:
                                   The dataset.  [required]
   --output PATH                   The output directory.  [required]
   --retrieval-model TEXT          The retrieval model.
-  --index [default|title|description]
+  --text-field-to-retrieve [default|title|description]
                                   The text field of the index on which to
                                   retrieve.
   --help                          Show this message and exit.
@@ -34,18 +34,20 @@ tira-cli upload --directory DIRECTORY-WITH-RUN
 We run retrieval via:
 
 ```
-./retrieve.py --dataset DATASET-ID --output runs --retrieval-model BM25 --index default
-./retrieve.py --dataset DATASET-ID --output runs --retrieval-model PL2 --index default
-./retrieve.py --dataset DATASET-ID --output runs --retrieval-model DirichletLM --index default
+./retrieve.py --dataset DATASET-ID --output output --retrieval-model BM25 --text-field-to-retrieve default
+./retrieve.py --dataset DATASET-ID --output output --retrieval-model PL2 --text-field-to-retrieve default
+./retrieve.py --dataset DATASET-ID --output output --retrieval-model DirichletLM --text-field-to-retrieve default
 
-./retrieve.py --dataset DATASET-ID --output runs --retrieval-model BM25 --index title
-./retrieve.py --dataset DATASET-ID --output runs --retrieval-model PL2 --index title
-./retrieve.py --dataset DATASET-ID --output runs --retrieval-model DirichletLM --index title
+./retrieve.py --dataset DATASET-ID --output output --retrieval-model BM25 --text-field-to-retrieve title
+./retrieve.py --dataset DATASET-ID --output output --retrieval-model PL2 --text-field-to-retrieve title
+./retrieve.py --dataset DATASET-ID --output output --retrieval-model DirichletLM --text-field-to-retrieve title
 
-./retrieve.py --dataset DATASET-ID --output runs --retrieval-model BM25 --index description
-./retrieve.py --dataset DATASET-ID --output runs --retrieval-model PL2 --index description
-./retrieve.py --dataset DATASET-ID --output runs --retrieval-model DirichletLM --index description
+./retrieve.py --dataset DATASET-ID --output output --retrieval-model BM25 --text-field-to-retrieve description
+./retrieve.py --dataset DATASET-ID --output output --retrieval-model PL2 --text-field-to-retrieve description
+./retrieve.py --dataset DATASET-ID --output output --retrieval-model DirichletLM --text-field-to-retrieve description
 ```
+For each run, a directory is created at `output/runs/DATASET-ID`, which includes a `run.txt.gz` file.
+After these files are generated, further investigate them by running the `analysis.ipynb` notebook.
 
 ## Indexing
 
