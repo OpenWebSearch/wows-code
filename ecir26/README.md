@@ -62,7 +62,8 @@ tira-cli upload --directory web-submission-skeleton
 
 We aim to maintain all work here in a mono-repository to have everything at one place. Therefore, we want to collect all approaches as directories in this repository. If you have a new approach, please add them via a pull request (i.e., fork the repository, and then, as soon as your approach is "finished enough", please create a pull request that adds your approach as a new directory, you do not need to add all your approaches, but the ones that you think could be interesting for others as well).
 
-If you want to add a new approach, please develop them in a [dev container](https://containers.dev/), as this makes it simpler for others to get your approach running.
+If you want to add a new approach, please develop it in a [dev container](https://containers.dev/), as this makes it easier for others to run your approach.
+When doing so, ensure that you open your IDE in a subdirectory that contains **only one** dev-container specification, so that the correct container can be started.
 
 We have a set of baseline approaches that you can take as inspiration:
 
