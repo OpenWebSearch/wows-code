@@ -1,0 +1,8 @@
+{
+    "runs": "../collection-radboud/runs/",
+    "chatnoir-index": "wows-owi/2025",
+    "subsample_depth": 400,
+    "qrels": "radboud/qrels.txt",
+    "topics": "radboud/topics.xml",
+    "include-fields": ["title", "url", "description"]
+}
