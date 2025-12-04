@@ -90,7 +90,8 @@ def predict(query, doc, config):
     assessor = LLMForRelevanceJudgment(prompt_impl, config["model"])
     predictions = []
     for segment in doc.segments[:3]:
-        predictions.append(assessor.generate(query.default_text(), segment))
+        segment_text = segment["text"][:50000]
+        predictions.append(assessor.generate(query.default_text(), segment_text))
 
     return json.dumps({"query_id": query.query_id, "doc_id": doc.doc_id, "predictions": predictions}) + '\n'
 
