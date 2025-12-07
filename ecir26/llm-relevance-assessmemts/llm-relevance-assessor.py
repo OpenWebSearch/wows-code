@@ -6,6 +6,7 @@ from tira.third_party_integrations import ir_datasets
 from tqdm import tqdm
 import gzip
 import prompts
+import re
 
 from trectools import TrecPoolMaker, TrecRun, TrecQrel
 
@@ -187,6 +188,12 @@ def run_predictions(directory: Path):
     for query in ir_dataset.queries_iter():
         process_query(directory, query, pool, ir_dataset, config)
 
+    print("Write qrels")
+    with open(directory / "qrels.txt", "w") as f:
+        for pred in read_all_predictons(directory):
+            score = max([0] + [parse_llm_response(p["content"])[0] for p in pred["predictions"]])
+            f.write(pred["query_id"] + " 0 " + pred["doc_id"] +  " "  + str(score) + "\n")
+    print("Done :)")
 
 if __name__ == '__main__':
     run_predictions()
