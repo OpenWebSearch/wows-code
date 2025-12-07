@@ -191,7 +191,7 @@ def run_predictions(directory: Path):
     print("Write qrels")
     with open(directory / "qrels.txt", "w") as f:
         for pred in read_all_predictons(directory):
-            score = max([0] + [parse_llm_response(p["content"])[0] for p in pred["predictions"]])
+            score = max([0] + [parse_llm_response(p["content"] if p and "content" in p else "")[0] for p in pred["predictions"]])
             f.write(pred["query_id"] + " 0 " + pred["doc_id"] +  " "  + str(score) + "\n")
     print("Done :)")
 
