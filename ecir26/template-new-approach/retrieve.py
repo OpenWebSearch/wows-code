@@ -45,7 +45,7 @@ def run_retrieval(output, index, dataset, retrieval_model, text_field_to_retriev
 
     description = f"This is a PyTerrier retriever using the retrieval model {retriever} retrieving on the {text_field_to_retrieve} text representation of the documents. Everything is set to the defaults."
 
-    with tracking(export_file_path=target_dir / "retrieval-metadata.yml", export_format=ExportFormat.IR_METADATA, system_description=description, system_name=tag):
+    with tracking(export_file_path=target_dir / "ir-metadata.yml", export_format=ExportFormat.IR_METADATA, system_description=description, system_name=tag):
         run = retriever(topics)
 
     pt.io.write_results(run, target_file)
