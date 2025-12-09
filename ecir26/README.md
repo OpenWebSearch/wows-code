@@ -49,6 +49,7 @@ For valid submissions, the output should look like:
 
 <img width="968" height="183" alt="Screenshot_20251123_192741" src="https://github.com/user-attachments/assets/7498f0d6-8442-4e06-82e1-3a8508a524b6" />
 
+If `tira-cli upload --dry-run --directory submission-skeleton` fails, log in first via your token from TIRA.io submission page.
 
 3. Upload your submission (i.e., remove the `--dry-run` flag and login):
 
