@@ -26,28 +26,36 @@ def get_index(dataset, field, output_path):
         for doc in tqdm(dataset.docs_iter(), "Pre-Process Documents"):
             docs.append({"docno": doc.doc_id, "text": extract_text_of_document(doc, field)})
 
+        print("Index Documents")
+        #This makes problems, if the default_text is used
         with tracking(export_file_path=index_dir / "index-metadata.yml", export_format=ExportFormat.IR_METADATA):
             pt.IterDictIndexer(str(index_dir.absolute()), meta={'docno' : 100}, verbose=True).index(docs)
 
+        
     return pt.IndexFactory.of(str(index_dir.absolute()))
 
 
 def run_retrieval(output, index, dataset, retrieval_model, text_field_to_retrieve):
-    tag = f"pyterrier-{retrieval_model}-on-{text_field_to_retrieve}"
+    print("Check if run exists")
+    tag = f"pyterrier-{retrieval_model}-on-{text_field_to_retrieve}-3"
     target_dir = output / "runs" / dataset / tag
     target_file = target_dir / "run.txt.gz"
 
     if target_file.exists():
         return
 
+    print(f"Run retrieval with {retrieval_model} on {text_field_to_retrieve}")
     topics = pt.datasets.get_dataset(f"irds:ir-lab-wise-2025/{dataset}").get_topics("title")
     retriever = pt.terrier.Retriever(index, wmodel=retrieval_model)
+    reranker = pt.terrier.Retriever(index, wmodel="PL2")
 
     description = f"This is a PyTerrier retriever using the retrieval model {retriever} retrieving on the {text_field_to_retrieve} text representation of the documents. Everything is set to the defaults."
 
     with tracking(export_file_path=target_dir / "retrieval-metadata.yml", export_format=ExportFormat.IR_METADATA, system_description=description, system_name=tag):
-        run = retriever(topics)
-
+        # rerank on the top 100 retrieved documents -> atm worse results
+        rerank = retriever % 100 >> reranker
+        run = rerank(topics)
+    
     pt.io.write_results(run, target_file)
 
 @click.command()

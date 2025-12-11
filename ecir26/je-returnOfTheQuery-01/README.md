@@ -34,9 +34,9 @@ tira-cli upload --directory DIRECTORY-WITH-RUN
 We run retrieval via:
 
 ```
-./retrieve.py --dataset DATASET-ID --output output --retrieval-model BM25 --text-field-to-retrieve default
-./retrieve.py --dataset DATASET-ID --output output --retrieval-model PL2 --text-field-to-retrieve default
-./retrieve.py --dataset DATASET-ID --output output --retrieval-model DirichletLM --text-field-to-retrieve default
+./retrieve.py --dataset DATASET-ID --output output --retrieval-model BM25 --text-field-to-retrieve default_text
+./retrieve.py --dataset DATASET-ID --output output --retrieval-model PL2 --text-field-to-retrieve default_text
+./retrieve.py --dataset DATASET-ID --output output --retrieval-model DirichletLM --text-field-to-retrieve default_text
 
 ./retrieve.py --dataset DATASET-ID --output output --retrieval-model BM25 --text-field-to-retrieve title
 ./retrieve.py --dataset DATASET-ID --output output --retrieval-model PL2 --text-field-to-retrieve title
