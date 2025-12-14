@@ -54,6 +54,21 @@ duo_pipeline = mono_pipeline % 5  >> reranker_pairwise
 run = duo_pipeline.transform(topics)
 ```
 
+### Ergebnis
+
+||Modell|  ndcg@10|
+|-|-|-|
+|-|Baseline BM25|0.451635|
+|0|                pyterrier-PL2-on-title-3| 0.263840|
+|1|               pyterrier-BM25-on-title-3| 0.274660|
+|2|        pyterrier-DirichletLM-on-title-3| 0.110035|
+|3| pyterrier-DirichletLM-on-default_text-3| 0.247526|
+|4|  pyterrier-DirichletLM-on-description-3| 0.065785|
+|5|         pyterrier-BM25-on-description-3| 0.162492|
+|6|        pyterrier-BM25-on-default_text-3| 0.317093|
+|7|         pyterrier-PL2-on-default_text-3| 0.346148|
+|8|          pyterrier-PL2-on-description-3| 0.139911|
+
 ## Contributers
 
 Team: Return of the Query
