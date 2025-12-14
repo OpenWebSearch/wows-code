@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import click
 import pyterrier as pt
+from pyterrier_t5 import MonoT5ReRanker, DuoT5ReRanker
 from pathlib import Path
 from tirex_tracker import tracking, ExportFormat
 from tira.third_party_integrations import ir_datasets, ensure_pyterrier_is_loaded
@@ -45,17 +46,26 @@ def run_retrieval(output, index, dataset, retrieval_model, text_field_to_retriev
         return
 
     print(f"Run retrieval with {retrieval_model} on {text_field_to_retrieve}")
-    topics = pt.datasets.get_dataset(f"irds:ir-lab-wise-2025/{dataset}").get_topics("title")
+    dataset = pt.datasets.get_dataset(f"irds:ir-lab-wise-2025/{dataset}")
+    topics = dataset.get_topics()
     retriever = pt.terrier.Retriever(index, wmodel=retrieval_model)
-    reranker = pt.terrier.Retriever(index, wmodel="PL2")
+    reranker_pointwise = MonoT5ReRanker()
+    reranker_pairwise = DuoT5ReRanker()
 
     description = f"This is a PyTerrier retriever using the retrieval model {retriever} retrieving on the {text_field_to_retrieve} text representation of the documents. Everything is set to the defaults."
 
     with tracking(export_file_path=target_dir / "retrieval-metadata.yml", export_format=ExportFormat.IR_METADATA, system_description=description, system_name=tag):
-        # rerank on the top 100 retrieved documents -> atm worse results
-        rerank = retriever % 100 >> reranker
-        run = rerank(topics)
-    
+        # rerank on the top 100 retrieved documents
+
+        # Steps promoted in lecture: Pointwise reranking on top 100 - monoT5
+        # Pairwise reranking on top 5 - duoT5
+        mono_pipeline = retriever % 100 >> reranker_pointwise
+        duo_pipeline = mono_pipeline % 5  >> reranker_pairwise
+        run = duo_pipeline.transform(topics)
+
+        # baseline
+        # run = retriever.transform(topics) 
+
     pt.io.write_results(run, target_file)
 
 @click.command()

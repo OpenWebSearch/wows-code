@@ -3,3 +3,4 @@ tira>=0.0.188
 ir_datasets
 tirex-tracker==0.2.15
 click
+pyterrier_t5

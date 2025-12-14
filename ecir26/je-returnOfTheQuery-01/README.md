@@ -34,20 +34,20 @@ tira-cli upload --directory DIRECTORY-WITH-RUN
 We run retrieval via:
 
 ```
-./retrieve.py --dataset DATASET-ID --output output --retrieval-model BM25 --text-field-to-retrieve default_text
-./retrieve.py --dataset DATASET-ID --output output --retrieval-model PL2 --text-field-to-retrieve default_text
-./retrieve.py --dataset DATASET-ID --output output --retrieval-model DirichletLM --text-field-to-retrieve default_text
+./retrieve.py --dataset radboud-validation-20251114-training --output best-try --retrieval-model BM25 --text-field-to-retrieve default_text
+./retrieve.py --dataset radboud-validation-20251114-training --output best-try --retrieval-model PL2 --text-field-to-retrieve default_text
+./retrieve.py --dataset radboud-validation-20251114-training --output best-try --retrieval-model DirichletLM --text-field-to-retrieve default_text
 
-./retrieve.py --dataset DATASET-ID --output output --retrieval-model BM25 --text-field-to-retrieve title
-./retrieve.py --dataset DATASET-ID --output output --retrieval-model PL2 --text-field-to-retrieve title
-./retrieve.py --dataset DATASET-ID --output output --retrieval-model DirichletLM --text-field-to-retrieve title
+./retrieve.py --dataset radboud-validation-20251114-training --output best-try --retrieval-model BM25 --text-field-to-retrieve title
+./retrieve.py --dataset radboud-validation-20251114-training --output best-try --retrieval-model PL2 --text-field-to-retrieve title
+./retrieve.py --dataset radboud-validation-20251114-training --output best-try --retrieval-model DirichletLM --text-field-to-retrieve title
 
-./retrieve.py --dataset DATASET-ID --output output --retrieval-model BM25 --text-field-to-retrieve description
-./retrieve.py --dataset DATASET-ID --output output --retrieval-model PL2 --text-field-to-retrieve description
-./retrieve.py --dataset DATASET-ID --output output --retrieval-model DirichletLM --text-field-to-retrieve description
+./retrieve.py --dataset radboud-validation-20251114-training --output best-try --retrieval-model BM25 --text-field-to-retrieve description
+./retrieve.py --dataset radboud-validation-20251114-training --output best-try --retrieval-model PL2 --text-field-to-retrieve description
+./retrieve.py --dataset radboud-validation-20251114-training --output best-try --retrieval-model DirichletLM --text-field-to-retrieve description
 ```
 For each run, a directory is created at `output/runs/DATASET-ID`, which includes a `run.txt.gz` file.
-After these files are generated, further investigate them by running the `analysis.ipynb` notebook.
+After these files are generated, further investigate them by running the `analysis.ipynb` nzctotebook.
 
 ## Indexing
 
@@ -62,3 +62,4 @@ tira-cli code-submission \
     --command '/index.py --dataset $inputDataset --output $outputDir/index --text-field default_text' \
     --dry-run
 ```
+
