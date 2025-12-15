@@ -56,6 +56,8 @@ run = duo_pipeline.transform(topics)
 
 ### Ergebnis
 
+Zu Beginn haben wir die Baseline des Systems mit einem BM25-Retrieval-System gemessen. Als Gütemaß haben wir NDCG@10 gewählt. Dieser Wert wurde für alle berechnet und anhand dessen wurden die Vergleiche durchgeführt.
+
 ||Modell|  ndcg@10|
 |-|-|-|
 |-|Baseline BM25|0.451635|
@@ -68,6 +70,8 @@ run = duo_pipeline.transform(topics)
 |6|        pyterrier-BM25-on-default_text-3| 0.317093|
 |7|         pyterrier-PL2-on-default_text-3| 0.346148|
 |8|          pyterrier-PL2-on-description-3| 0.139911|
+
+Wie in der Tabelle zu sehen ist, wurden die Baseline-Werte unterschritten. Das System hat sich durch das Reranking nicht verbessert, sondern verschlechtert. Die Gründe dafür können wir uns derzeit nicht erklären.
 
 ## Contributers
 

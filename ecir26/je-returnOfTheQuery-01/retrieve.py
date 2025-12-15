@@ -60,7 +60,7 @@ def run_retrieval(output, index, dataset, retrieval_model, text_field_to_retriev
         # Steps promoted in lecture: Pointwise reranking on top 100 - monoT5
         # Pairwise reranking on top 5 - duoT5
         mono_pipeline = retriever % 100 >> reranker_pointwise
-        duo_pipeline = mono_pipeline % 5  >> reranker_pairwise
+        duo_pipeline = mono_pipeline % 10  >> reranker_pairwise
         run = duo_pipeline.transform(topics)
 
         # baseline
