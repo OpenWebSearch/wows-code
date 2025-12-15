@@ -17,7 +17,7 @@ Options:
                                   The dataset.  [required]
   --output PATH                   The output directory.  [required]
   --retrieval-model TEXT          The retrieval model.
-  --text-field-to-retrieve [default|title|description]
+  --text-field-to-retrieve [default_text|title|description]
                                   The text field of the index on which to
                                   retrieve.
   --help                          Show this message and exit.
@@ -34,9 +34,9 @@ tira-cli upload --directory DIRECTORY-WITH-RUN
 We run retrieval via:
 
 ```
-./retrieve.py --dataset DATASET-ID --output output --retrieval-model BM25 --text-field-to-retrieve default
-./retrieve.py --dataset DATASET-ID --output output --retrieval-model PL2 --text-field-to-retrieve default
-./retrieve.py --dataset DATASET-ID --output output --retrieval-model DirichletLM --text-field-to-retrieve default
+./retrieve.py --dataset DATASET-ID --output output --retrieval-model BM25 --text-field-to-retrieve default_text
+./retrieve.py --dataset DATASET-ID --output output --retrieval-model PL2 --text-field-to-retrieve default_text
+./retrieve.py --dataset DATASET-ID --output output --retrieval-model DirichletLM --text-field-to-retrieve default_text
 
 ./retrieve.py --dataset DATASET-ID --output output --retrieval-model BM25 --text-field-to-retrieve title
 ./retrieve.py --dataset DATASET-ID --output output --retrieval-model PL2 --text-field-to-retrieve title
