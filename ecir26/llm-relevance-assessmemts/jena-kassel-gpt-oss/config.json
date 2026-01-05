@@ -1,0 +1,7 @@
+{
+    "runs": "../../corpus-construction/collection-jena-kassel/runs/",
+    "tira-id": "ir-lab-wise-2025/jena-kassel-20251207-test",
+    "pooling_depth": 100,
+    "model": "openai/gpt-oss-120b",
+    "prompt": "umbrella_zeroshot_bing"
+}

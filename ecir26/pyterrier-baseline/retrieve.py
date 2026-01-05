@@ -21,7 +21,7 @@ def main(dataset, index, retrieval_model, output):
     target_dir = output / dataset / tag
     description = f"This is a PyTerrier retriever using the retrieval model {retriever} retrieving on the {index} text representation of the documents. Everything is set to the defaults."
 
-    with tracking(export_file_path=target_dir / "retrieval-metadata.yml", export_format=ExportFormat.IR_METADATA, system_description=description, system_name=tag):
+    with tracking(export_file_path=target_dir / "ir-metadata.yml", export_format=ExportFormat.IR_METADATA, system_description=description, system_name=tag):
         run = retriever(topics)
 
     pt.io.write_results(run, target_dir / "run.txt.gz")

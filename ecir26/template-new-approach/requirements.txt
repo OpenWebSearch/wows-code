@@ -1,5 +1,5 @@
 python-terrier
 tira>=0.0.188
 ir_datasets
-tirex-tracker==0.2.15
+tirex-tracker==0.2.17
 click
