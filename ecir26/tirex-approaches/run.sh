@@ -2,7 +2,7 @@
 
 ./run-tirex-approach.py --tira-approach "tira-ir-starter/DFIZ Re-Rank (tira-ir-starter-pyterrier)" --dataset ir-lab-wise-2025/radboud-validation-20251114-training --output output/dfiz --tag dfiz-re-ranker
 ./run-tirex-approach.py --tira-approach "tira-ir-starter/DFIZ Re-Rank (tira-ir-starter-pyterrier)" --dataset ir-lab-wise-2025/radboud-validation-20251114-training --output output/dfiz --tag dfiz-re-ranker
-./run-tirex-approach.py --tira-approach "tira-ir-starter/DFRee Re-Rank (tira-ir-starter-pyterrier)"  --dataset ir-lab-wise-2025/radboud-validation-20251114-training --output output output/dfree --tag dfree-re-ranker
+./run-tirex-approach.py --tira-approach "tira-ir-starter/DFRee Re-Rank (tira-ir-starter-pyterrier)"  --dataset ir-lab-wise-2025/radboud-validation-20251114-training --output output/dfree --tag dfree-re-ranker
 ./run-tirex-approach.py --tira-approach "tira-ir-starter/DFReeKLIM Re-Rank (tira-ir-starter-pyterrier)"  --dataset ir-lab-wise-2025/radboud-validation-20251114-training --output output/dree-kl --tag dfree-kl-re-ranker
 ./run-tirex-approach.py --tira-approach "tira-ir-starter/DirichletLM Re-Rank (tira-ir-starter-pyterrier)"  --dataset ir-lab-wise-2025/radboud-validation-20251114-training --output output/dirichlet --tag dirichlet-re-ranker
 ./run-tirex-approach.py --tira-approach "tira-ir-starter/DLH Re-Rank (tira-ir-starter-pyterrier)" --dataset ir-lab-wise-2025/radboud-validation-20251114-training --output output/dlh --tag dlh-re-ranker
@@ -24,7 +24,7 @@
 ./run-tirex-approach.py --gpu 0 --tira-approach "tira-ir-starter/ColBERT Re-Rank (tira-ir-starter-pyterrier)" --dataset ir-lab-wise-2025/radboud-validation-20251114-training --output output/colbert --tag colbert
 ./run-tirex-approach.py --gpu 0 --tira-approach "tira-ir-starter/MonoT5 Base (tira-ir-starter-gygaggle)" --dataset ir-lab-wise-2025/radboud-validation-20251114-training --output output/monot5-base --tag monot5-base
 ./run-tirex-approach.py --gpu 0 --tira-approach "tira-ir-starter/ANCE Base Cosine (tira-ir-starter-beir)" --dataset ir-lab-wise-2025/radboud-validation-20251114-training --output output/ance-cosine --tag ance-cosine
-./run-tirex-approach.py --gpu 0 --tira-approach "tira-ir-starter/ANCE Base Dot (tira-ir-starter-beir)" --dataset ir-lab-wise-2025/radboud-validation-20251114-training --output output/ance-dot
+./run-tirex-approach.py --gpu 0 --tira-approach "tira-ir-starter/ANCE Base Dot (tira-ir-starter-beir)" --dataset ir-lab-wise-2025/radboud-validation-20251114-training --output output/ance-dot --tag ance-dot
 ./run-tirex-approach.py --gpu 0 --tira-approach "tira-ir-starter/SBERT msmarco-distilbert-base-v3-cos (tira-ir-starter-beir)" --dataset ir-lab-wise-2025/radboud-validation-20251114-training --output output/distilbert-v3-cos --tag distilbert-v3-cos
 ./run-tirex-approach.py --gpu 0 --tira-approach "tira-ir-starter/SBERT msmarco-distilbert-base-v3-dot (tira-ir-starter-beir)" --dataset ir-lab-wise-2025/radboud-validation-20251114-training --output output/distilbert-v3-dot --tag distilbert-v3-dot
 ./run-tirex-approach.py --gpu 0 --tira-approach "tira-ir-starter/SBERT msmarco-MiniLM-L6-cos-v5 (tira-ir-starter-beir)" --dataset ir-lab-wise-2025/radboud-validation-20251114-training --output output/minilm-l6-v5 --tag minilm-l6-v5
