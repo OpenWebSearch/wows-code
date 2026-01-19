@@ -1,5 +1,6 @@
 python-terrier
-tira>=0.0.188
+tira>=0.0.194
 ir_datasets
 tirex-tracker==0.2.17
 click
+jupyterlab
